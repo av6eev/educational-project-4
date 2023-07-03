@@ -1,0 +1,14 @@
+
+educational-project-4/UserSettings/
+
+*.sln
+
+*.csproj
+
+educational-project-4/Library/
+
+educational-project-4/Logs/
+
+educational-project-4/obj/
+
+educational-project-4/.idea/

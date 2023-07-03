@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13452d2c27114a0aa4fc5a1123a0b64f, type: 3}
+  m_Name: Mercenary
+  m_EditorClassIdentifier: 
+  Description:
+    Category: "\u041D\u0430\u0435\u043C\u043D\u0438\u043A\u0438"
+    Buildings:
+    - {fileID: 11400000, guid: 023daac8d4f6e8f4e839210412a86b0a, type: 2}
