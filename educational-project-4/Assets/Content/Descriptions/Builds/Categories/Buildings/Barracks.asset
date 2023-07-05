@@ -9,11 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13452d2c27114a0aa4fc5a1123a0b64f, type: 3}
-  m_Name: Mercenary
+  m_Script: {fileID: 11500000, guid: b0232ad63b3d4ea8bedf898f9e881a2a, type: 3}
+  m_Name: Barracks
   m_EditorClassIdentifier: 
   Description:
+    Id: 6
+    Title: "\u0411\u0430\u0440\u0430\u043A\u0438"
     Category: "\u041D\u0430\u0435\u043C\u043D\u0438\u043A\u0438"
-    Buildings:
-    - {fileID: 11400000, guid: 023daac8d4f6e8f4e839210412a86b0a, type: 2}
-    - {fileID: 11400000, guid: 985761cebbf338447925e9057847948a, type: 2}
+    Priority: 15
+    Limit: 1
+    DialogId: 
+    Size: {x: 20, y: 20}
+    Prefab: {fileID: 4179210265686317053, guid: b831de702ad0e364f8e05bcbe933f668,
+      type: 3}

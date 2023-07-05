@@ -1,5 +1,4 @@
-﻿using System;
-using Cinemachine;
+﻿using Cinemachine;
 using UnityEngine;
 
 namespace CameraManager
@@ -60,9 +59,6 @@ namespace CameraManager
             var moveDirection = cachedTransform.forward * inputDirection.z + cachedTransform.right * inputDirection.x;
             moveDirection.y = 0;
             var targetPosition = cachedTransformPosition + moveDirection;
-            
-            Debug.Log("input " + inputDirection);
-            Debug.Log("direction " + moveDirection);
             
             transform.position = Vector3.Lerp(cachedTransformPosition, targetPosition, LerpDragSpeed);
             VirtualCamera.GetCinemachineComponent<CinemachineTransposer>().m_FollowOffset.y = _followOffset.y;
