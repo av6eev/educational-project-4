@@ -9,12 +9,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 13452d2c27114a0aa4fc5a1123a0b64f, type: 3}
-  m_Name: Administrative
+  m_Script: {fileID: 11500000, guid: b0232ad63b3d4ea8bedf898f9e881a2a, type: 3}
+  m_Name: Capitoly
   m_EditorClassIdentifier: 
   Description:
+    Id: 7
+    Title: "\u0413\u043B\u0430\u0432\u043D\u043E\u0435 \u0437\u0434\u0430\u043D\u0438\u0435"
     Category: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
-    Buildings:
-    - {fileID: 11400000, guid: 21529fc0b92f1514a833d8ea5635585b, type: 2}
-    - {fileID: 11400000, guid: 6f0ad7e2a1eb70e44a0625b41874d917, type: 2}
-    - {fileID: 11400000, guid: 23cb847df8dbad749ac59c44a19641ac, type: 2}
+    Priority: 1
+    Limit: 1
+    DialogId: 
+    Size: {x: 8, y: 8}
+    Prefab: {fileID: 4232069621423787220, guid: 530f5356e1e2ab443a78ef3fba7e0a65,
+      type: 3}
