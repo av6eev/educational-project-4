@@ -19,11 +19,12 @@ namespace Building
             Destroy(currentView.gameObject);
         }
 
-        public BuildingDialogView InstantiateDialogView(string descriptionText)
+        public BuildingDialogView InstantiateDialogView(string descriptionText, int currentLevel)
         {
             var view = Instantiate(DialogPrefab);
 
             view.DescriptionTxt.text = descriptionText;
+            view.CurrentLvlTxt.text = currentLevel.ToString();
 
             return view;
         }

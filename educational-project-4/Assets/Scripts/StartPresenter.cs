@@ -1,5 +1,6 @@
 using BuildDialog;
 using Grid;
+using Grid.GridExpansion;
 using GridBuildingsStatistic;
 using UnityEngine;
 using Utilities;
@@ -19,12 +20,15 @@ public class StartPresenter : MonoBehaviour
         _manager.GridModel = new GridModel();
         _manager.BuildDialogModel = new BuildDialogModel(_manager.Descriptions.Builds);
         _manager.StatisticModel = new GridBuildingsStatisticModel(_manager.Descriptions.BuildsCategory);
+        _manager.ExpansionModel = new GridExpansionModel();
+        
         
         _systems.Add(SystemTypes.GridPlacement, new GridPlacementSystem(_manager));
         
         _presenters.Add(new GridBuildingsStatisticPresenter(_manager, _manager.StatisticModel));
         _presenters.Add(new BuildDialogPresenter(_manager, _manager.BuildDialogModel, View.BuildDialogView));
         _presenters.Add(new GridPresenter(_manager, _manager.GridModel, View.GridView));
+        _presenters.Add(new GridExpansionPresenter(_manager, _manager.ExpansionModel));
         _presenters.Activate();
     }
 

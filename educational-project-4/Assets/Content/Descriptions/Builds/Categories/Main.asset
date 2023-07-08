@@ -9,16 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b0232ad63b3d4ea8bedf898f9e881a2a, type: 3}
-  m_Name: House1x1_2
+  m_Script: {fileID: 11500000, guid: 13452d2c27114a0aa4fc5a1123a0b64f, type: 3}
+  m_Name: Main
   m_EditorClassIdentifier: 
   Description:
-    Id: 5
-    Title: House1x1_1
     Category: "\u0413\u043B\u0430\u0432\u043D\u043E\u0435"
-    Priority: 10
-    Limit: 1
-    DialogId: 2
-    Size: {x: 1, y: 1}
-    Prefab: {fileID: 9195197344479158973, guid: 6ec0c52ac2033684592e50bda43136d0,
-      type: 3}
+    Buildings:
+    - {fileID: 11400000, guid: 6f0ad7e2a1eb70e44a0625b41874d917, type: 2}
