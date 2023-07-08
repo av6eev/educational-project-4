@@ -19,6 +19,6 @@ MonoBehaviour:
     Priority: 15
     Limit: 1
     DialogId: 
-    Size: {x: 20, y: 20}
-    Prefab: {fileID: 4179210265686317053, guid: b831de702ad0e364f8e05bcbe933f668,
+    Size: {x: 6, y: 10}
+    Prefab: {fileID: 4179210265686317053, guid: 334713d52e2aad848b857e8b79fef1b9,
       type: 3}

@@ -15,10 +15,10 @@ MonoBehaviour:
   Description:
     Id: 7
     Title: "\u041A\u0430\u043F\u0438\u0442\u043E\u043B\u0438\u0439"
-    Category: "\u0413\u043B\u0430\u0432\u043D\u043E\u0435"
+    Category: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
     Priority: 1
     Limit: 1
     DialogId: 
-    Size: {x: 8, y: 8}
-    Prefab: {fileID: 4232069621423787220, guid: 530f5356e1e2ab443a78ef3fba7e0a65,
+    Size: {x: 6, y: 6}
+    Prefab: {fileID: 4232069621423787220, guid: 90e85a98711e2d548ac21067931f02d0,
       type: 3}

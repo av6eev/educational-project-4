@@ -15,5 +15,6 @@ MonoBehaviour:
   Description:
     Category: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
     Buildings:
-    - {fileID: 11400000, guid: 21529fc0b92f1514a833d8ea5635585b, type: 2}
     - {fileID: 11400000, guid: 6f0ad7e2a1eb70e44a0625b41874d917, type: 2}
+    - {fileID: 11400000, guid: 21529fc0b92f1514a833d8ea5635585b, type: 2}
+    - {fileID: 11400000, guid: 23cb847df8dbad749ac59c44a19641ac, type: 2}
