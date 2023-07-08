@@ -1,11 +1,14 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace BuildingDialog
 {
     public class BuildingDialogView : MonoBehaviour
     {
         public TextMeshProUGUI DescriptionTxt;
+        public TextMeshProUGUI CurrentLvlTxt;
+        public Button UpgradeLevelBtn;
 
         private void Start()
         {

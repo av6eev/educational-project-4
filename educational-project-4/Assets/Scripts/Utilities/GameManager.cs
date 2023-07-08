@@ -1,5 +1,6 @@
 ﻿using BuildDialog;
 using Grid;
+using Grid.GridExpansion;
 using GridBuildingsStatistic;
 
 namespace Utilities
@@ -12,5 +13,6 @@ namespace Utilities
         public GridModel GridModel;
         public BuildDialogModel BuildDialogModel;
         public GridBuildingsStatisticModel StatisticModel;
+        public GridExpansionModel ExpansionModel;
     }
 }
