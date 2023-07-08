@@ -54,6 +54,7 @@ namespace Grid.GridExpansion
 
             gridView.Grid.cellSize = new Vector3(territoryUpgrade, territoryUpgrade, territoryUpgrade);
             gridView.GridRoot.transform.localScale = new Vector3(scale, scale, scale);
+            _model.CurrentGridSize = new Vector2(scale, scale);
         }
     }
 }

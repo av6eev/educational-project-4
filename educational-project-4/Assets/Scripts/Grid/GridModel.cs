@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using Building;
 using Descriptions.Builds.BuildsCategory.Buildings;
 using UnityEngine;
@@ -34,9 +33,15 @@ namespace Grid
             OnBuildingSelected?.Invoke();
         }
         
-        public bool IsPlacementValid(Vector3Int gridPosition)
+        public bool IsPlacementValid(Vector3Int gridPosition, Vector2 gridSize)
         {
-            return CalculatePosition(gridPosition, LastSelectedBuilding.Size).All(position => !RegisteredBuildings.ContainsKey(position));
+            foreach (var position in CalculatePosition(gridPosition, LastSelectedBuilding.Size))
+            {
+                if (position.x >= gridSize.x || position.z >= gridSize.y) return false;
+                if (RegisteredBuildings.ContainsKey(position)) return false;
+            }
+
+            return true;
         }
         
         public List<Vector3Int> CalculatePosition(Vector3Int gridPosition, Vector2Int size)

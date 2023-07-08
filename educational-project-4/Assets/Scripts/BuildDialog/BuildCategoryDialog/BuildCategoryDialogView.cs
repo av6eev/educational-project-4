@@ -16,11 +16,20 @@ namespace BuildDialog.BuildCategoryDialog
 
         private readonly List<BuildCardDialogView> _buildings = new();
         
-        public BuildCardDialogView InstantiateBuildingCard(RectTransform contentRoot, string title, string limit)
+        public BuildCardDialogView InstantiateBuildingCard(RectTransform contentRoot, string title, string limit, Sprite image)
         {
             var view = Instantiate(BuildingCellPrefab, contentRoot);
             view.LimitTxt.text = limit;
             view.TitleTxt.text = title;
+            
+            if (image != null)
+            {
+                view.PreviewImage.sprite = image;
+            }
+            else
+            {
+                view.PreviewImage.gameObject.SetActive(false);
+            }
             
             _buildings.Add(view);
             return view;

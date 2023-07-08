@@ -61,7 +61,7 @@ namespace BuildDialog.BuildCategoryDialog
             {
                 var remainingLimit = _manager.StatisticModel.BuildingLimits[description.Description.Id];
                 var model = new BuildCardDialogModel(description.Description);
-                var view = _view.InstantiateBuildingCard(_manager.GameView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString());
+                var view = _view.InstantiateBuildingCard(_manager.GameView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
 
                 if (remainingLimit == 0)
                 {

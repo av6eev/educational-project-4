@@ -21,23 +21,24 @@ namespace Grid
             var mousePosition = GetSelectedPosition(_manager.GameView.Camera, _gridView);
             var gridPosition = _gridView.Grid.WorldToCell(mousePosition);
             
-            HandleInput(gridModel);
-            
             if (gridModel.LastDetectedPosition == gridPosition) return;
             if (gridModel.LastSelectedBuilding == null) return;
 
             _gridView.MouseIndicator.transform.position = mousePosition;
-            UpdatePreviewPosition(gridPosition, gridModel.IsPlacementValid(gridPosition));
+            var isValid = gridModel.IsPlacementValid(gridPosition, _manager.ExpansionModel.CurrentGridSize);
+            
+            UpdatePreviewPosition(gridPosition, isValid);
+            HandleInput(gridModel, isValid);
         }
 
-        private void HandleInput(GridModel model)
+        private void HandleInput(GridModel model, bool isValid)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
                 model.ChangePlacementMode(false);
             }
 
-            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && model.LastSelectedBuilding != null)
+            if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject() && model.LastSelectedBuilding != null && isValid)
             {
                 model.PlaceBuilding();
             }
@@ -60,7 +61,7 @@ namespace Grid
             var mousePosition = Input.mousePosition;
             mousePosition.z = camera.nearClipPlane;
             
-            if (Physics.Raycast(camera.ScreenPointToRay(mousePosition), out var hit, 500, gridView.PlacementMask))
+            if (Physics.Raycast(camera.ScreenPointToRay(mousePosition), out var hit, 3000, gridView.PlacementMask))
             {
                 _manager.GridModel.LastPosition = hit.point;
                 // _manager.GameView.FogParticleSystem.SetActive(hit.distance > 20f);

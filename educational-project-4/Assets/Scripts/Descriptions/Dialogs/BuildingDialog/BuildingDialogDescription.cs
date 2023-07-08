@@ -1,5 +1,6 @@
 ﻿using System;
 using Descriptions.Base;
+using UnityEngine;
 
 namespace Descriptions.Dialogs.BuildingDialog
 {
@@ -8,5 +9,6 @@ namespace Descriptions.Dialogs.BuildingDialog
     {
         public string Id;
         public string Description;
+        public Sprite PreviewImage;
     }
 }

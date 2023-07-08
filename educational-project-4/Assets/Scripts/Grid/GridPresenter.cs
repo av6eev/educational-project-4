@@ -64,9 +64,13 @@ namespace Grid
         private void PlaceBuilding()
         {
             var gridPosition = _view.Grid.WorldToCell(_manager.GridModel.LastPosition);
-            
-            if (!_model.IsPlacementValid(gridPosition)) return;
-            if (_manager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0) return;
+
+            if (_manager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0)
+            {
+                _manager.StatisticModel.UpdateLimit(_model.LastSelectedBuilding.Id);
+                StopShowPreview();
+                return;
+            }
             
             AddNewBuilding(gridPosition, _model.LastSelectedBuilding);
             

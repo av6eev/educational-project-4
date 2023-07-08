@@ -21,5 +21,6 @@ namespace Descriptions.Builds.BuildsCategory.Buildings
         [Header("Others")]
         public Vector2Int Size = Vector2Int.one;
         public BuildingView Prefab;
+        public Sprite PreviewImage;
     }
 }

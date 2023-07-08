@@ -9,6 +9,7 @@ namespace BuildingDialog
         public TextMeshProUGUI DescriptionTxt;
         public TextMeshProUGUI CurrentLvlTxt;
         public Button UpgradeLevelBtn;
+        public Image PreviewImage;
 
         private void Start()
         {

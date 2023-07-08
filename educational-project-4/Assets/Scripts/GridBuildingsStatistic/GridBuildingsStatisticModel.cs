@@ -23,7 +23,7 @@ namespace GridBuildingsStatistic
 
         public void UpdateLimit(string buildingId)
         {
-            BuildingLimits[buildingId] -= 1;
+            BuildingLimits[buildingId] -= BuildingLimits[buildingId] == 0 ? 0 : 1;
             OnLimitUpdated?.Invoke(buildingId);
         }
     }

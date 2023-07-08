@@ -58,7 +58,7 @@ namespace Building
             
             var neededDialogDescription = _manager.Descriptions.BuildingDialogs.Find(item => item.Id == _model.Description.DialogId);
             var model = new BuildingDialogModel(_model.Description);
-            var view = _view.InstantiateDialogView(neededDialogDescription?.Description, _model.CurrentUpgradeLevel);
+            var view = _view.InstantiateDialogView(neededDialogDescription?.Description, _model.CurrentUpgradeLevel, neededDialogDescription?.PreviewImage);
             var presenter = new BuildingDialogPresenter(_manager, model, view);
             
             presenter.Activate();

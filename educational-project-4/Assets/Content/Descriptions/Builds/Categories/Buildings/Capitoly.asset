@@ -18,7 +18,8 @@ MonoBehaviour:
     Category: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
     Priority: 1
     Limit: 1
-    DialogId: 
+    DialogId: 4
     Size: {x: 6, y: 6}
     Prefab: {fileID: 4232069621423787220, guid: 90e85a98711e2d548ac21067931f02d0,
       type: 3}
+    PreviewImage: {fileID: 21300000, guid: 8cf73169f3c612948ae6c65ae8c8032c, type: 3}

@@ -2,14 +2,12 @@
 using System.Collections.Generic;
 using BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using Descriptions.Builds.BuildsCategory;
-using Descriptions.Builds.BuildsCategory.Buildings;
 
 namespace BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogModel
     {
         public event Action OnDataClear;
-        public event Action<BuildingDescription> OnCardsResort; 
 
         public readonly BuildsCategoryDescription Description;
         
