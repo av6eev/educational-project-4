@@ -44,6 +44,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4232069621423787221}
   - component: {fileID: 4232069621423787220}
+  - component: {fileID: 9181662753337803950}
   m_Layer: 0
   m_Name: Capitoly
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DialogPrefab: {fileID: 4472683014999902055, guid: 729bba07d988bb94ba989a622ff3a427,
     type: 3}
+--- !u!136 &9181662753337803950
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4232069621423787222}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 3.75
+  m_Height: 26
+  m_Direction: 1
+  m_Center: {x: 4, y: 10, z: 4}
 --- !u!1001 &4232069620348001394
 PrefabInstance:
   m_ObjectHideFlags: 0
