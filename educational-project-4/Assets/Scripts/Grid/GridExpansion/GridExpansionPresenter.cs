@@ -28,25 +28,25 @@ namespace Grid.GridExpansion
         {
             var gridView = _manager.GameView.GridView;
             float territoryUpgrade;
-            float scale;
+            int scale;
             
             switch (_model.CurrentExpansionBuildingLevel)
             {
                 case (int)ExpansionBuildingLevels.FifthLevel:
                     territoryUpgrade = 1f / (float)ExpansionLevelsScaleUpgrade.FifthLevel;
-                    scale = (float)ExpansionLevelsScaleUpgrade.FifthLevel;
+                    scale = (int)ExpansionLevelsScaleUpgrade.FifthLevel;
                     break;
                 case (int)ExpansionBuildingLevels.TenthLevel:
                     territoryUpgrade = 1f / (float)ExpansionLevelsScaleUpgrade.TenthLevel;
-                    scale = (float)ExpansionLevelsScaleUpgrade.TenthLevel;
+                    scale = (int)ExpansionLevelsScaleUpgrade.TenthLevel;
                     break;
                 case (int)ExpansionBuildingLevels.FifteenthLevel:
                     territoryUpgrade = 1f / (float)ExpansionLevelsScaleUpgrade.FifteenthLevel;
-                    scale = (float)ExpansionLevelsScaleUpgrade.FifteenthLevel;
+                    scale = (int)ExpansionLevelsScaleUpgrade.FifteenthLevel;
                     break;
                 case (int)ExpansionBuildingLevels.TwentiethLevel:
                     territoryUpgrade = 1f / (float)ExpansionLevelsScaleUpgrade.TwentiethLevel;
-                    scale = (float)ExpansionLevelsScaleUpgrade.TwentiethLevel;
+                    scale = (int)ExpansionLevelsScaleUpgrade.TwentiethLevel;
                     break;
                 default:
                     return;
@@ -54,7 +54,7 @@ namespace Grid.GridExpansion
 
             gridView.Grid.cellSize = new Vector3(territoryUpgrade, territoryUpgrade, territoryUpgrade);
             gridView.GridRoot.transform.localScale = new Vector3(scale, scale, scale);
-            _model.CurrentGridSize = new Vector2(scale, scale);
+            _model.UpdateGridSize(scale);
         }
     }
 }

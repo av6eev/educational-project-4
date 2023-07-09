@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Description:
     Category: "\u0413\u043B\u0430\u0432\u043D\u043E\u0435"
-    Buildings: []
+    Buildings:
+    - {fileID: 11400000, guid: 23cb847df8dbad749ac59c44a19641ac, type: 2}

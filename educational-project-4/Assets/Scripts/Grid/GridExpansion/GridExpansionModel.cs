@@ -8,18 +8,23 @@ namespace Grid.GridExpansion
         public event Action OnLevelUpdate;
         
         public int CurrentExpansionBuildingLevel;
-        public Vector2 CurrentGridSize;
+        public Vector2 CurrentGridSize { get; private set; }
 
         public GridExpansionModel()
         {
             CurrentExpansionBuildingLevel = (int)ExpansionBuildingLevels.Default;
-            CurrentGridSize = new Vector2((int)ExpansionLevelsScaleUpgrade.Default * 5, (int)ExpansionLevelsScaleUpgrade.Default * 5);
+            UpdateGridSize((int)ExpansionLevelsScaleUpgrade.Default);
         }
 
         public void UpdateExpansionLevel(int buildingLevel)
         {
             CurrentExpansionBuildingLevel = buildingLevel;
             OnLevelUpdate?.Invoke();
+        }
+
+        public void UpdateGridSize(int scale)
+        {
+            CurrentGridSize = new Vector2(scale * 5, scale * 5);
         }
     }
 }
