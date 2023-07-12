@@ -7,68 +7,67 @@ namespace PolygonManager
 {
     public class PolygonDrawingHelper : MonoBehaviour
     {
-        public GameObject Prefab;
+        public GameObject Cell;
         public List<Vector2> Positions;
 
         private readonly Dictionary<Vector3, GameObject> _cells = new();
 
         public void Start()
         {
-            if (Positions.Count == 0) return;
+            var cellsToRemove = new List<KeyValuePair<Vector3, GameObject>>();
             
-            var leftUpCorner = Vector3.zero;
-            var leftDownCorner = Vector3.zero;
-            var rightUpCorner = Vector3.zero;
-            var rightDownCorner = Vector3.zero;
-            
-            var (side1, side2) = FindSides(Positions);
-            var side2ToRightCorner = side2.Last();
-            var side2ToLeftCorner = side2.First();
-            var side1ToRightCorner = side1.First();
-            var side1ToLeftCorner = side1.Last();
-            
-            var distance1 = Mathf.Sqrt((float)Math.Pow(side2ToRightCorner.z - FindRightPoint().y, 2));
-            
-            var distance2 = Mathf.Sqrt((float)Math.Pow(side2ToLeftCorner.z - FindLeftPoint().y, 2));
-            
-            leftDownCorner = CalculateSum(side2ToLeftCorner, distance1, Vector3.forward);
-            rightDownCorner = CalculateSum(side2ToRightCorner, distance2, Vector3.back);
-            
-            if (side2ToLeftCorner.z.Equals(side1ToLeftCorner.z))
-            {
-                leftUpCorner = CalculateSum(side1ToLeftCorner, distance2, Vector3.forward);
-            }
-            
-            if (side2ToRightCorner.z.Equals(side1ToRightCorner.z))
-            {
-                rightUpCorner = CalculateSum(side1ToRightCorner, distance1, Vector3.back);
-            }
-
-            var sideZ = Vector3.Distance(leftUpCorner, rightUpCorner);
-            var sideX = Vector3.Distance(leftUpCorner, leftDownCorner);
-
-            for (var x = 0; x < sideX; x++)
-            {
-                for (var z = 0; z < sideZ; z++)
-                {
-                    var position = new Vector3(x + .5f, 0, z + .5f);
-                    var cell = Instantiate(Prefab, position, Quaternion.identity);
-                    
-                    _cells.Add(position, cell);
-                }
-            }
-
-            var cellsToRemove = new List<Vector3>();
+            GenerateCellsInsideGivenArea();
             
             foreach (var cell in _cells.Where(cell => !IsInPolygon(cell.Key, Positions)))
             {
-                cellsToRemove.Add(cell.Key);
+                cellsToRemove.Add(cell);
                 Destroy(cell.Value.gameObject);
             }
 
             foreach (var cell in cellsToRemove)
             {
-                _cells.Remove(cell);
+                _cells.Remove(cell.Key);
+            }
+        }
+
+        private void GenerateCellsInsideGivenArea()
+        {
+            if (Positions.Count == 0) return;
+            
+            var leftUpCorner = Vector3.zero;
+            var rightUpCorner = Vector3.zero;
+
+            var (xMaxSide, xMinSide) = FindSides(Positions);
+            var xMinRightPoint = xMinSide.Last();
+            var xMinLeftPoint = xMinSide.First();
+            var xMaxRightPoint = xMaxSide.First();
+            var xMaxLeftPoint = xMaxSide.Last();
+            
+            var distanceToRightPoint = Mathf.Sqrt((float)Math.Pow(xMinRightPoint.z - FindRightPoint().y, 2));
+            var distanceToLeftPoint = Mathf.Sqrt((float)Math.Pow(xMinLeftPoint.z - FindLeftPoint().y, 2));
+
+            var leftDownCorner = CalculateSum(xMinLeftPoint, distanceToLeftPoint, Vector3.forward);
+            
+            if (xMinLeftPoint.z.Equals(xMaxLeftPoint.z))
+            {
+                leftUpCorner = CalculateSum(xMaxLeftPoint, distanceToLeftPoint, Vector3.forward);
+            }
+
+            var rightDownCorner = CalculateSum(xMinRightPoint, distanceToRightPoint, Vector3.back);
+
+            if (xMinRightPoint.z.Equals(xMaxRightPoint.z))
+            {
+                rightUpCorner = CalculateSum(xMaxRightPoint, distanceToRightPoint, Vector3.back);
+            }
+            
+            for (var x = rightDownCorner.x; x < Vector3.Distance(leftUpCorner, leftDownCorner) + rightDownCorner.x; x++)
+            {
+                for (var z = rightDownCorner.z; z < Vector3.Distance(leftUpCorner, rightUpCorner) + rightDownCorner.z; z++)
+                {
+                    var position = new Vector3(x + .5f, 0, z + .5f);
+                    var cell = Instantiate(Cell, position, Quaternion.identity);
+                    _cells.Add(position, cell);
+                }
             }
         }
 
@@ -79,12 +78,9 @@ namespace PolygonManager
             
             foreach (var b in polygon)
             {
-                if (b.x.Equals(cell.x) && b.y.Equals(cell.z)) return true;
-                if (b.x.Equals(a.x) && cell.x.Equals(a.x) && cell.x >= Math.Min(a.y, b.y) && cell.z <= Math.Max(a.y, b.y)) return true;
-                if (b.y.Equals(a.y) && cell.z.Equals(a.y) && cell.x >= Math.Min(a.x, b.x) && cell.x <= Math.Max(a.x, b.x)) return true;
                 if ((b.y < cell.z && a.y >= cell.z) || (a.y < cell.z && b.y >= cell.z))
                 {
-                    var px = (int)(b.x + 1.0 * (cell.z - b.y) / (a.y - b.y) * (a.x - b.x));
+                    var px = (int)(b.x + .5f * (cell.z - b.y) / (a.y - b.y) * (a.x - b.x));
                     intersects.Add(px);
                 }
 
@@ -107,26 +103,26 @@ namespace PolygonManager
 
             Gizmos.DrawLine(new Vector3(Positions[0].x, 0, Positions[0].y), new Vector3(Positions[^1].x, 0, Positions[^1].y));
             
-            var (side1, side2) = FindSides(Positions);
-            var side2ToRightCorner = side2.Last();
-            var side2ToLeftCorner = side2.First();
-            var side1ToRightCorner = side1.First();
-            var side1ToLeftCorner = side1.Last();
+            var (xMaxSide, xMinSide) = FindSides(Positions);
+            var xMinRightPoint = xMinSide.Last();
+            var xMinLeftPoint = xMinSide.First();
+            var xMaxRightPoint = xMaxSide.First();
+            var xMaxLeftPoint = xMaxSide.Last();
             
-            var distance1 = Mathf.Sqrt((float)Math.Pow(side2ToRightCorner.z - FindRightPoint().y, 2));
-            Debug.DrawRay(side2ToRightCorner, new Vector3(0, 0, -distance1));
+            var distanceToRightPoint = Mathf.Sqrt((float)Math.Pow(xMinRightPoint.z - FindRightPoint().y, 2));
+            var distanceToLeftPoint = Mathf.Sqrt((float)Math.Pow(xMinLeftPoint.z - FindLeftPoint().y, 2));
+
+            Debug.DrawRay(xMaxRightPoint, new Vector3(0, 0, -distanceToRightPoint));
+            Debug.DrawRay(xMinLeftPoint, new Vector3(0, 0, distanceToLeftPoint));
             
-            var distance2 = Mathf.Sqrt((float)Math.Pow(side2ToLeftCorner.z - FindLeftPoint().y, 2));
-            Debug.DrawRay(side2ToLeftCorner, new Vector3(0, 0, distance2));
-            
-            if (side2ToLeftCorner.z.Equals(side1ToLeftCorner.z))
+            if (xMinLeftPoint.z.Equals(xMaxLeftPoint.z))
             {
-                Debug.DrawRay(side1ToLeftCorner, new Vector3(0, 0, distance2));
+                Debug.DrawRay(xMaxLeftPoint, new Vector3(0, 0, distanceToLeftPoint));
             }
-            
-            if (side2ToRightCorner.z.Equals(side1ToRightCorner.z))
+
+            if (xMinRightPoint.z.Equals(xMaxRightPoint.z))
             {
-                Debug.DrawRay(side1ToRightCorner, new Vector3(0, 0, -distance1));
+                Debug.DrawRay(xMinRightPoint, new Vector3(0, 0, -distanceToRightPoint));
             }
         }
 
