@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c4c925161bd1b5646afa341b6afd18a0
+guid: d5fc8f5e51eb81d498c43a9c0e762573
 ModelImporter:
   serializedVersion: 22103
   internalIDToNameTable: []
@@ -36,7 +36,7 @@ ModelImporter:
   meshes:
     lODScreenPercentages: []
     globalScale: 1
-    meshCompression: 3
+    meshCompression: 0
     addColliders: 0
     useSRGBMaterialColor: 1
     sortHierarchyByName: 1
@@ -100,7 +100,7 @@ ModelImporter:
   humanoidOversampling: 1
   avatarSetup: 0
   addHumanoidExtraRootOnlyWhenUsingAvatar: 1
-  importBlendShapeDeformPercent: 1
+  importBlendShapeDeformPercent: 0
   remapMaterialsIfMaterialImportModeIsNone: 0
   additionalBone: 0
   userData: 
