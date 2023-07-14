@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028446, g: 0.22571445, b: 0.30692363, a: 1}
+  m_IndirectSpecularColor: {r: 0.18242729, g: 0.22813776, b: 0.30727506, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -437,8 +437,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cell: {fileID: 0}
-  Wall: {fileID: 0}
-  BorderMaterial: {fileID: 0}
   Positions:
   - {x: 5, y: 0}
   - {x: 10, y: 0}
@@ -543,8 +541,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cell: {fileID: 2970542628886074870, guid: b9e4b209e20278f47bfe7ef6cf25e500, type: 3}
-  Wall: {fileID: 184326509860080202, guid: b1ffc1864dff7fb43bf8b7bbbe30285f, type: 3}
-  BorderMaterial: {fileID: 0}
   Positions:
   - {x: 5, y: 0}
   - {x: 10, y: 0}
@@ -604,18 +600,18 @@ Light:
   m_Type: 1
   m_Shape: 0
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 1
+  m_Intensity: 3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 1
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
-    m_Bias: 0.05
-    m_NormalBias: 0.4
+    m_Bias: 0.82
+    m_NormalBias: 0
     m_NearPlane: 0.2
     m_CullingMatrixOverride:
       e00: 1
@@ -646,7 +642,7 @@ Light:
   m_Lightmapping: 4
   m_LightShadowCasterMode: 0
   m_AreaSize: {x: 1, y: 1}
-  m_BounceIntensity: 1
+  m_BounceIntensity: 2
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
   m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 0}
@@ -661,7 +657,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 444113036}
-  m_LocalRotation: {x: -0.05516166, y: -0.8985546, z: 0.41900265, w: -0.1182945}
+  m_LocalRotation: {x: 0.042709447, y: -0.93459576, z: 0.34886697, w: 0.05475944}
   m_LocalPosition: {x: 0, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -682,7 +678,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Version: 1
-  m_UsePipelineSettings: 1
+  m_UsePipelineSettings: 0
   m_AdditionalLightsShadowResolutionTier: 2
   m_LightLayerMask: 1
   m_CustomShadowLayers: 0
@@ -762,8 +758,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Cell: {fileID: 2970542628886074870, guid: b9e4b209e20278f47bfe7ef6cf25e500, type: 3}
-  Wall: {fileID: 184326509860080202, guid: b1ffc1864dff7fb43bf8b7bbbe30285f, type: 3}
-  BorderMaterial: {fileID: 2100000, guid: 050e304fac729e64c8020f6ef6d6b525, type: 2}
   Positions:
   - {x: 50, y: 0}
   - {x: 50, y: 8}
