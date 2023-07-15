@@ -1,15 +1,16 @@
 ﻿using System;
+using Earth;
 using Utilities;
 
 namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly BuildCardDialogModel _model;
         private readonly BuildCardDialogView _view;
 
-        public BuildCardDialogPresenter(GameManager manager, BuildCardDialogModel model, BuildCardDialogView view)
+        public BuildCardDialogPresenter(EarthLocationManager manager, BuildCardDialogModel model, BuildCardDialogView view)
         {
             _manager = manager;
             _model = model;

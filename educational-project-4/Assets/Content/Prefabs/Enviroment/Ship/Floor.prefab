@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 171294608279435708}
   - component: {fileID: 3877410286115780121}
   - component: {fileID: 1309319703397696211}
+  - component: {fileID: 928399195722980636}
   m_Layer: 0
   m_Name: Floor
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &3877410286115780121
 MeshFilter:
@@ -83,3 +84,15 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &928399195722980636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660726384953336582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03f13ca19602417cac955e91d5a07b9b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

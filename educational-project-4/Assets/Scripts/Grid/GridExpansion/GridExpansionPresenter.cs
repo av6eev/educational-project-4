@@ -1,14 +1,15 @@
-﻿using UnityEngine;
+﻿using Earth;
+using UnityEngine;
 using Utilities;
 
 namespace Grid.GridExpansion
 {
     public class GridExpansionPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly GridExpansionModel _model;
 
-        public GridExpansionPresenter(GameManager manager, GridExpansionModel model)
+        public GridExpansionPresenter(EarthLocationManager manager, GridExpansionModel model)
         {
             _manager = manager;
             _model = model;
@@ -26,7 +27,7 @@ namespace Grid.GridExpansion
 
         private void ExpandTerritory()
         {
-            var gridView = _manager.GameView.GridView;
+            var gridView = _manager.EarthSceneView.EarthView.GridView;
             float territoryUpgrade;
             int scale;
             

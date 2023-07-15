@@ -2,6 +2,7 @@
 {
     public enum SystemTypes
     {
-        GridPlacement,
+        EarthGridPlacement,
+        CosmicGridPlacement,
     }
 }

@@ -1,11 +1,12 @@
 ﻿using BuildDialog.BuildCategoryDialog;
+using Earth;
 using Utilities;
 
 namespace BuildDialog
 {
     public class BuildDialogPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly BuildDialogModel _model;
         private readonly BuildDialogView _view;
 
@@ -13,7 +14,7 @@ namespace BuildDialog
 
         private int _toggleCounter;
 
-        public BuildDialogPresenter(GameManager manager, BuildDialogModel model, BuildDialogView view)
+        public BuildDialogPresenter(EarthLocationManager manager, BuildDialogModel model, BuildDialogView view)
         {
             _manager = manager;
             _model = model;

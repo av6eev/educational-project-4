@@ -1,24 +1,25 @@
-﻿using UnityEngine;
+﻿using Earth;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using Utilities;
 
 namespace Grid
 {
-    public class GridPlacementSystem : ISystem
+    public class EarthGridPlacementSystem : ISystem
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly GridView _gridView;
 
-        public GridPlacementSystem(GameManager manager)
+        public EarthGridPlacementSystem(EarthLocationManager manager)
         {
             _manager = manager;
-            _gridView = _manager.GameView.GridView;
+            _gridView = _manager.EarthSceneView.EarthView.GridView;
         }
         
         public void Update(float deltaTime)
         {
             var gridModel = _manager.GridModel;
-            var mousePosition = GetSelectedPosition(_manager.GameView.Camera, _gridView);
+            var mousePosition = GetSelectedPosition(_manager.EarthSceneView.EarthView.Camera, _gridView);
             var gridPosition = _gridView.Grid.WorldToCell(mousePosition);
             
             if (gridModel.LastDetectedPosition == gridPosition) return;
@@ -64,7 +65,7 @@ namespace Grid
             if (Physics.Raycast(camera.ScreenPointToRay(mousePosition), out var hit, 3000, gridView.PlacementMask))
             {
                 _manager.GridModel.LastPosition = hit.point;
-                // _manager.GameView.FogParticleSystem.SetActive(hit.distance > 20f);
+                // _manager.EarthView.FogParticleSystem.SetActive(hit.distance > 20f);
             }
 
             return _manager.GridModel.LastPosition;

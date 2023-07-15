@@ -1,6 +1,7 @@
 ﻿using System;
 using Building;
 using Descriptions.Builds.BuildsCategory.Buildings;
+using Earth;
 using UnityEngine;
 using Utilities;
 
@@ -8,11 +9,11 @@ namespace Grid
 {
     public class GridPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly GridModel _model;
         private readonly GridView _view;
 
-        public GridPresenter(GameManager manager, GridModel model, GridView view)
+        public GridPresenter(EarthLocationManager manager, GridModel model, GridView view)
         {
             _manager = manager;
             _model = model;
@@ -74,8 +75,8 @@ namespace Grid
             
             AddNewBuilding(gridPosition, _model.LastSelectedBuilding);
             
-            _manager.GameView.BuildDialogView.BuildingRoot.SetActive(true);
-            _manager.GameView.BuildDialogView.CategoriesRoot.SetActive(true);
+            _manager.EarthSceneView.EarthView.BuildDialogView.BuildingRoot.SetActive(true);
+            _manager.EarthSceneView.EarthView.BuildDialogView.CategoriesRoot.SetActive(true);
             
             ChangePlacementMode(false);
         }
@@ -108,8 +109,8 @@ namespace Grid
             {
                 case true:
                     StartShowPreview(_model.LastSelectedBuilding.Size);
-                    _manager.GameView.BuildDialogView.BuildingRoot.SetActive(false);
-                    _manager.GameView.BuildDialogView.CategoriesRoot.SetActive(false);
+                    _manager.EarthSceneView.EarthView.BuildDialogView.BuildingRoot.SetActive(false);
+                    _manager.EarthSceneView.EarthView.BuildDialogView.CategoriesRoot.SetActive(false);
                     break;
                 case false:
                     if (_model.LastSelectedBuilding != null)
