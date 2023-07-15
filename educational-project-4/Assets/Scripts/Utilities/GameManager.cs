@@ -1,18 +1,20 @@
-﻿using BuildDialog;
-using Grid;
-using Grid.GridExpansion;
-using GridBuildingsStatistic;
+﻿using Core;
 
 namespace Utilities
 {
     public class GameManager
     {
-        public GameView GameView;
-        public GameDescriptions Descriptions;
+        public CoreStartView View { get; }
+        public SceneLoaderPresenter SceneLoader { get; }
+        public SystemsEngine SystemEngine { get; }
+        public GameDescriptions Descriptions { get; }
 
-        public GridModel GridModel;
-        public BuildDialogModel BuildDialogModel;
-        public GridBuildingsStatisticModel StatisticModel;
-        public GridExpansionModel ExpansionModel;
+        public GameManager(CoreStartView view, GameDescriptions descriptions, SceneLoaderPresenter sceneLoader, SystemsEngine systemEngine)
+        {
+            Descriptions = descriptions;
+            View = view;
+            SceneLoader = sceneLoader;
+            SystemEngine = systemEngine;
+        }
     }
 }

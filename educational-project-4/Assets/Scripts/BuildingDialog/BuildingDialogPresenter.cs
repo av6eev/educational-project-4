@@ -1,14 +1,15 @@
-﻿using Utilities;
+﻿using Earth;
+using Utilities;
 
 namespace BuildingDialog
 {
     public class BuildingDialogPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly BuildingDialogModel _model;
         private readonly BuildingDialogView _view;
 
-        public BuildingDialogPresenter(GameManager manager, BuildingDialogModel model, BuildingDialogView view)
+        public BuildingDialogPresenter(EarthLocationManager manager, BuildingDialogModel model, BuildingDialogView view)
         {
             _manager = manager;
             _model = model;

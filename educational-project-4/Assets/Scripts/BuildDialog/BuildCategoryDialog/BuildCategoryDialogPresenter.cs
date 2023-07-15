@@ -2,19 +2,20 @@
 using System.Linq;
 using BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using Descriptions.Builds.BuildsCategory.Buildings;
+using Earth;
 using Utilities;
 
 namespace BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogPresenter : IPresenter
     {
-        private readonly GameManager _manager;
+        private readonly EarthLocationManager _manager;
         private readonly BuildCategoryDialogModel _model;
         private readonly BuildCategoryDialogView _view;
         
         private readonly PresentersEngine _presenters = new();
 
-        public BuildCategoryDialogPresenter(GameManager manager, BuildCategoryDialogModel model, BuildCategoryDialogView view)
+        public BuildCategoryDialogPresenter(EarthLocationManager manager, BuildCategoryDialogModel model, BuildCategoryDialogView view)
         {
             _manager = manager;
             _model = model;
@@ -61,7 +62,7 @@ namespace BuildDialog.BuildCategoryDialog
             {
                 var remainingLimit = _manager.StatisticModel.BuildingLimits[description.Description.Id];
                 var model = new BuildCardDialogModel(description.Description);
-                var view = _view.InstantiateBuildingCard(_manager.GameView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
+                var view = _view.InstantiateBuildingCard(_manager.EarthSceneView.EarthView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
 
                 if (remainingLimit == 0)
                 {
@@ -77,7 +78,7 @@ namespace BuildDialog.BuildCategoryDialog
             _model.Description.Buildings = new List<BuildingDescriptionSo>(sortedDescriptions);
             
             _presenters.Activate();
-            _manager.GameView.BuildDialogView.BuildingRoot.SetActive(true);
+            _manager.EarthSceneView.EarthView.BuildDialogView.BuildingRoot.SetActive(true);
         }
     }
 }
