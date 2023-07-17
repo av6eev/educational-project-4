@@ -1,16 +1,17 @@
 ﻿using System;
-using Earth;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 using Utilities;
 
 namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogPresenter : IPresenter
     {
-        private readonly EarthLocationManager _manager;
+        private readonly GameManager _manager;
         private readonly BuildCardDialogModel _model;
         private readonly BuildCardDialogView _view;
 
-        public BuildCardDialogPresenter(EarthLocationManager manager, BuildCardDialogModel model, BuildCardDialogView view)
+        public BuildCardDialogPresenter(GameManager manager, BuildCardDialogModel model, BuildCardDialogView view)
         {
             _manager = manager;
             _model = model;
@@ -41,7 +42,16 @@ namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
 
         private void OnClick()
         {
-            _manager.GridModel.SelectBuilding(_model.Description);
+            var sceneIndex = SceneManager.GetSceneAt(1).buildIndex;
+            switch (sceneIndex)
+            { 
+                case (int) SceneNames.CosmicScene:
+                    _manager.ShipModel.SelectBuilding(_model.Description);
+                    break;
+                case (int) SceneNames.EarthScene:
+                    _manager.EarthGridModel.SelectBuilding(_model.Description);
+                    break;
+            }
         }
     }
 }

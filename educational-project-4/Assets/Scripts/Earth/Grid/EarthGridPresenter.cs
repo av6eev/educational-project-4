@@ -1,19 +1,18 @@
 ﻿using System;
 using Building;
 using Descriptions.Builds.BuildsCategory.Buildings;
-using Earth;
 using UnityEngine;
 using Utilities;
 
-namespace Grid
+namespace Earth.Grid
 {
-    public class GridPresenter : IPresenter
+    public class EarthGridPresenter : IPresenter
     {
         private readonly EarthLocationManager _manager;
-        private readonly GridModel _model;
-        private readonly GridView _view;
+        private readonly EarthGridModel _model;
+        private readonly EarthGridView _view;
 
-        public GridPresenter(EarthLocationManager manager, GridModel model, GridView view)
+        public EarthGridPresenter(EarthLocationManager manager, EarthGridModel model, EarthGridView view)
         {
             _manager = manager;
             _model = model;
@@ -64,7 +63,7 @@ namespace Grid
 
         private void PlaceBuilding()
         {
-            var gridPosition = _view.Grid.WorldToCell(_manager.GridModel.LastPosition);
+            var gridPosition = _view.Grid.WorldToCell(_manager.EarthGridModel.LastPosition);
 
             if (_manager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0)
             {
@@ -83,24 +82,24 @@ namespace Grid
         
         private void AddNewBuilding(Vector3Int gridPosition, BuildingDescription description)
         {
-            var takenPosition = _model.CalculatePosition(gridPosition, description.Size);
-            var model = new BuildingModel(description.Id, description, takenPosition);
-            var instantiateResult = _view.CreateBuilding(description.Prefab, gridPosition);
-            new BuildingPresenter(_manager, model, instantiateResult.Item2).Activate();
-            
-            _manager.StatisticModel.Buildings.Add(model);
-
-            foreach (var position in takenPosition)
-            {
-                if (_model.RegisteredBuildings.ContainsKey(position))
-                {
-                    throw new Exception($"Cell {position} already contains in dictionary");
-                }
-
-                _model.RegisteredBuildings[position] = model;
-            }
-            
-            _manager.StatisticModel.UpdateLimit(model.Id);
+            // var takenPosition = _model.CalculatePosition(gridPosition, description.Size);
+            // var model = new BuildingModel(description.Id, description, takenPosition);
+            // var instantiateResult = _view.CreateBuilding(description.Prefab, gridPosition);
+            // new BuildingPresenter(_manager, model, instantiateResult.Item2).Activate();
+            //
+            // _manager.StatisticModel.Buildings.Add(model);
+            //
+            // foreach (var position in takenPosition)
+            // {
+            //     if (_model.RegisteredBuildings.ContainsKey(position))
+            //     {
+            //         throw new Exception($"Cell {position} already contains in dictionary");
+            //     }
+            //
+            //     _model.RegisteredBuildings[position] = model;
+            // }
+            //
+            // _manager.StatisticModel.UpdateLimit(model.Id);
         }
      
         private void ChangePlacementMode(bool state)
@@ -124,7 +123,6 @@ namespace Grid
             }
             
             _view.GridRoot.SetActive(state);
-            _view.MouseIndicator.SetActive(state);
         }
         
         private void SettingCursor(Vector2Int size)

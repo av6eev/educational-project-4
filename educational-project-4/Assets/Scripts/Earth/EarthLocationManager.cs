@@ -1,8 +1,4 @@
-﻿using BuildDialog;
-using Earth.Scene;
-using Grid;
-using Grid.GridExpansion;
-using GridBuildingsStatistic;
+﻿using Earth.Scene;
 using Utilities;
 
 namespace Earth
@@ -13,12 +9,7 @@ namespace Earth
         
         public EarthSceneView EarthSceneView;
         
-        public GridModel GridModel;
-        public BuildDialogModel BuildDialogModel;
-        public GridBuildingsStatisticModel StatisticModel;
-        public GridExpansionModel ExpansionModel;
-        
-        public EarthLocationManager(GameManager manager) : base(manager.View, manager.Descriptions, manager.SceneLoader, manager.SystemEngine)
+        public EarthLocationManager(GameManager manager) : base(manager.CoreStartView, manager.Descriptions, manager.SceneLoader, manager.SystemEngine, manager.BuildDialogModel, manager.StatisticModel)
         {
             GameManager = manager;
         }

@@ -6,7 +6,7 @@ namespace BuildDialog
 {
     public class BuildDialogPresenter : IPresenter
     {
-        private readonly EarthLocationManager _manager;
+        private readonly GameManager _manager;
         private readonly BuildDialogModel _model;
         private readonly BuildDialogView _view;
 
@@ -14,7 +14,7 @@ namespace BuildDialog
 
         private int _toggleCounter;
 
-        public BuildDialogPresenter(EarthLocationManager manager, BuildDialogModel model, BuildDialogView view)
+        public BuildDialogPresenter(GameManager manager, BuildDialogModel model, BuildDialogView view)
         {
             _manager = manager;
             _model = model;

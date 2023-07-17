@@ -1,14 +1,14 @@
 ﻿using Earth;
 using Utilities;
 
-namespace GridBuildingsStatistic
+namespace BuildingsStatistic
 {
-    public class GridBuildingsStatisticPresenter : IPresenter
+    public class BuildingsStatisticPresenter : IPresenter
     {
-        private readonly EarthLocationManager _manager;
-        private readonly GridBuildingsStatisticModel _model;
+        private readonly GameManager _manager;
+        private readonly BuildingsStatisticModel _model;
 
-        public GridBuildingsStatisticPresenter(EarthLocationManager manager, GridBuildingsStatisticModel model)
+        public BuildingsStatisticPresenter(GameManager manager, BuildingsStatisticModel model)
         {
             _manager = manager;
             _model = model;

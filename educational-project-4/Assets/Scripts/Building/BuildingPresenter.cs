@@ -1,5 +1,4 @@
 ﻿using BuildingDialog;
-using Earth;
 using UnityEngine;
 using Utilities;
 
@@ -7,13 +6,13 @@ namespace Building
 {
     public class BuildingPresenter : IPresenter
     {
-        private readonly EarthLocationManager _manager;
+        private readonly GameManager _manager;
         private readonly BuildingModel _model;
         private readonly BuildingView _view;
 
         private BuildingDialogView _currentDialog;
 
-        public BuildingPresenter(EarthLocationManager manager, BuildingModel model, BuildingView view)
+        public BuildingPresenter(GameManager manager, BuildingModel model, BuildingView view)
         {
             _manager = manager;
             _model = model;

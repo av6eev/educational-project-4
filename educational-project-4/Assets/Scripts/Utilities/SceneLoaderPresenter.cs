@@ -21,6 +21,9 @@ namespace Utilities
             
             if (_currentSceneTitle != Empty)
             {
+                _gameManager.CoreStartView.MainCamera.enabled = true;
+                _gameManager.CoreStartView.MainUIRoot.SetActive(false);
+
                 _presenter.Deactivate();
                 _presenter = null;
                 
@@ -49,14 +52,15 @@ namespace Utilities
             _sceneLoader.completed -= OnCompleteLoadScene;
             
             var gameSceneView = GameObject.Find("game_scene_view").GetComponent<GameSceneView>();
-
+            
             switch (gameSceneView)
             {
                 case CosmicSceneView view:
                     var cosmicLocationManager = new CosmicLocationManager(_gameManager);
                     var cosmicModel = new CosmicModel();
-                    
+
                     cosmicLocationManager.CosmicSceneView = view;
+                    cosmicLocationManager.CosmicSceneView.MainCamera.enabled = true;
                     
                     _presenter = new CosmicPresenter(cosmicLocationManager, cosmicModel, view.CosmicView);
                     break;
@@ -70,6 +74,9 @@ namespace Utilities
                     break;
             }
             
+            _gameManager.CoreStartView.MainCamera.enabled = false;
+            _gameManager.CoreStartView.MainUIRoot.SetActive(true);
+
             _presenter.Activate();
         }
     }
