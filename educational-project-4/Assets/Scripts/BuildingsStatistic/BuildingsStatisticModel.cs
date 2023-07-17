@@ -4,16 +4,16 @@ using System.Linq;
 using Building;
 using Descriptions.Builds.BuildsCategory;
 
-namespace GridBuildingsStatistic
+namespace BuildingsStatistic
 {
-    public class GridBuildingsStatisticModel
+    public class BuildingsStatisticModel
     {
         public event Action<string> OnLimitUpdated; 
         
         public readonly List<BuildingModel> Buildings = new();
         public readonly Dictionary<string, int> BuildingLimits = new();
 
-        public GridBuildingsStatisticModel(List<BuildsCategoryDescription> buildsCategory)
+        public BuildingsStatisticModel(List<BuildsCategoryDescription> buildsCategory)
         {
             foreach (var building in buildsCategory.SelectMany(category => category.Buildings))
             {

@@ -1,4 +1,4 @@
-﻿namespace Grid.GridExpansion
+﻿namespace Earth.Grid.GridExpansion
 {
     public enum ExpansionBuildingLevels
     {

@@ -1,7 +1,8 @@
 ﻿using BuildDialog;
 using Descriptions.Base;
-using Grid;
+using Earth.Grid;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Earth
 {
@@ -9,7 +10,7 @@ namespace Earth
     {
         public DescriptionsCollectionSo DescriptionsCollection;
 
-        public GridView GridView;
+        [FormerlySerializedAs("GridView")] public EarthGridView EarthGridView;
         public BuildDialogView BuildDialogView;
     
         public Camera Camera;

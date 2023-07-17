@@ -1,9 +1,5 @@
-using BuildDialog;
-using Earth.Scene;
-using Grid;
-using Grid.GridExpansion;
-using GridBuildingsStatistic;
-using UnityEngine;
+using Earth.Grid;
+using Earth.Grid.GridExpansion;
 using Utilities;
 
 namespace Earth
@@ -18,7 +14,6 @@ namespace Earth
 
         public EarthPresenter(EarthLocationManager manager, EarthModel model, EarthView view)
         {
-            _manager = manager;
             _manager = manager;
             _model = model;
             _view = view;
@@ -39,17 +34,13 @@ namespace Earth
 
         private void CreateNecessaryData()
         {
-            _manager.GridModel = new GridModel();
-            _manager.BuildDialogModel = new BuildDialogModel(_manager.Descriptions.Builds);
-            _manager.StatisticModel = new GridBuildingsStatisticModel(_manager.Descriptions.BuildsCategory);
-            _manager.ExpansionModel = new GridExpansionModel();
+            _manager.EarthGridModel = new EarthGridModel();
+            _manager.ExpansionModel = new EarthGridExpansionModel();
         
             _manager.GameManager.SystemEngine.Add(SystemTypes.EarthGridPlacement, new EarthGridPlacementSystem(_manager));
-        
-            _presenters.Add(new GridBuildingsStatisticPresenter(_manager, _manager.StatisticModel));
-            _presenters.Add(new BuildDialogPresenter(_manager, _manager.BuildDialogModel, _view.BuildDialogView));
-            _presenters.Add(new GridPresenter(_manager, _manager.GridModel, _view.GridView));
-            _presenters.Add(new GridExpansionPresenter(_manager, _manager.ExpansionModel));
+            
+            _presenters.Add(new EarthGridPresenter(_manager, _manager.EarthGridModel, _view.EarthGridView));
+            _presenters.Add(new EarthGridExpansionPresenter(_manager, _manager.ExpansionModel));
         }
     }
 }

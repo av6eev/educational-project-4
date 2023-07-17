@@ -1,38 +1,36 @@
-﻿using Earth;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using Utilities;
 
-namespace Grid
+namespace Earth.Grid
 {
     public class EarthGridPlacementSystem : ISystem
     {
         private readonly EarthLocationManager _manager;
-        private readonly GridView _gridView;
+        private readonly EarthGridView _earthGridView;
 
         public EarthGridPlacementSystem(EarthLocationManager manager)
         {
             _manager = manager;
-            _gridView = _manager.EarthSceneView.EarthView.GridView;
+            _earthGridView = _manager.EarthSceneView.EarthView.EarthGridView;
         }
         
         public void Update(float deltaTime)
         {
-            var gridModel = _manager.GridModel;
-            var mousePosition = GetSelectedPosition(_manager.EarthSceneView.EarthView.Camera, _gridView);
-            var gridPosition = _gridView.Grid.WorldToCell(mousePosition);
+            var gridModel = _manager.EarthGridModel;
+            var mousePosition = GetSelectedPosition(_manager.EarthSceneView.EarthView.Camera, _earthGridView);
+            var gridPosition = _earthGridView.Grid.WorldToCell(mousePosition);
             
             if (gridModel.LastDetectedPosition == gridPosition) return;
             if (gridModel.LastSelectedBuilding == null) return;
 
-            _gridView.MouseIndicator.transform.position = mousePosition;
             var isValid = gridModel.IsPlacementValid(gridPosition, _manager.ExpansionModel.CurrentGridSize);
             
             UpdatePreviewPosition(gridPosition, isValid);
             HandleInput(gridModel, isValid);
         }
 
-        private void HandleInput(GridModel model, bool isValid)
+        private void HandleInput(EarthGridModel model, bool isValid)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -50,25 +48,25 @@ namespace Grid
             var color = isValid ? Color.green : Color.red;
             
             color.a = .5f;
-            _gridView.CellSelectedIndicatorRenderer.color = color;
-            _gridView.PreviewMaterialInstance.color = color;
+            _earthGridView.CellSelectedIndicatorRenderer.color = color;
+            _earthGridView.PreviewMaterialInstance.color = color;
 
-            _gridView.CellSelectedIndicator.transform.position = Vector3.Lerp(_gridView.CellSelectedIndicator.transform.position, position, .2f);
-            _gridView.PreviewObject.transform.position = Vector3.Lerp(_gridView.PreviewObject.transform.position, new Vector3(position.x, position.y + .06f, position.z), .2f);
+            _earthGridView.CellSelectedIndicator.transform.position = Vector3.Lerp(_earthGridView.CellSelectedIndicator.transform.position, position, .2f);
+            _earthGridView.PreviewObject.transform.position = Vector3.Lerp(_earthGridView.PreviewObject.transform.position, new Vector3(position.x, position.y + .06f, position.z), .2f);
         }
 
-        private Vector3 GetSelectedPosition(Camera camera, GridView gridView)
+        private Vector3 GetSelectedPosition(Camera camera, EarthGridView earthGridView)
         {
             var mousePosition = Input.mousePosition;
             mousePosition.z = camera.nearClipPlane;
             
-            if (Physics.Raycast(camera.ScreenPointToRay(mousePosition), out var hit, 3000, gridView.PlacementMask))
+            if (Physics.Raycast(camera.ScreenPointToRay(mousePosition), out var hit, 3000, earthGridView.PlacementMask))
             {
-                _manager.GridModel.LastPosition = hit.point;
+                _manager.EarthGridModel.LastPosition = hit.point;
                 // _manager.EarthView.FogParticleSystem.SetActive(hit.distance > 20f);
             }
 
-            return _manager.GridModel.LastPosition;
+            return _manager.EarthGridModel.LastPosition;
         }
     }
 }

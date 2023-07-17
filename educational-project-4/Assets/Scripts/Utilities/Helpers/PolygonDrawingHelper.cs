@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace PolygonManager
+namespace Utilities.Helpers
 {
     public class PolygonDrawingHelper : MonoBehaviour
     {

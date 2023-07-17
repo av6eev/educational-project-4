@@ -10,14 +10,14 @@ namespace Building
         public event Action OnDialogClosed, OnLevelUpdated;
         
         public string Id { get; private set; }
-        public List<Vector3Int> TakenPositions;
+        public List<Vector2> TakenPositions;
         public int CurrentUpgradeLevel = 1;
         
         public readonly BuildingDescription Description;
 
         public bool HasActiveDialog;
 
-        public BuildingModel(string id, BuildingDescription description, List<Vector3Int> takenPositions)
+        public BuildingModel(string id, BuildingDescription description, List<Vector2> takenPositions)
         {
             Id = id;
             Description = description;

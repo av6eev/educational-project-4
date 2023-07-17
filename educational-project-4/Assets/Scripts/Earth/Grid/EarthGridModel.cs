@@ -4,9 +4,9 @@ using Building;
 using Descriptions.Builds.BuildsCategory.Buildings;
 using UnityEngine;
 
-namespace Grid
+namespace Earth.Grid
 {
-    public class GridModel
+    public class EarthGridModel
     {
         public event Action<bool> OnPlacementModeChanged;
         public event Action OnBuildingPlaced, OnBuildingSelected;

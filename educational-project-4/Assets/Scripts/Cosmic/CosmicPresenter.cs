@@ -1,5 +1,4 @@
-﻿using System.Reflection;
-using Cosmic.Ship;
+﻿using Cosmic.Ship;
 using Cosmic.Ship.FloorCell;
 using Utilities;
 
@@ -37,7 +36,7 @@ namespace Cosmic
         {
             var shipModel = new CosmicShipModel();
             
-            _manager.ShipModel = shipModel;
+            _manager.GameManager.ShipModel = shipModel;
             _manager.GameManager.SystemEngine.Add(SystemTypes.EarthGridPlacement, new CosmicShipFloorPlacementSystem(_manager));
 
             _presenters.Add(new CosmicShipPresenter(_manager, shipModel, _manager.CosmicSceneView.CosmicShipView));

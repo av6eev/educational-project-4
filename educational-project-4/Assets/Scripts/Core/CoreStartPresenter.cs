@@ -1,4 +1,6 @@
-﻿using Core.Game;
+﻿using BuildDialog;
+using BuildingsStatistic;
+using Core.Game;
 using UnityEngine;
 using Utilities;
 
@@ -14,7 +16,8 @@ namespace Core
 
         public void Start()
         {
-            _manager = new GameManager(StartView, new GameDescriptions(StartView.DescriptionsCollection), new SceneLoaderPresenter(), _systems);
+            var gameDescriptions = new GameDescriptions(StartView.DescriptionsCollection);
+            _manager = new GameManager(StartView, gameDescriptions, new SceneLoaderPresenter(), _systems, new BuildDialogModel(gameDescriptions.Builds), new BuildingsStatisticModel(gameDescriptions.BuildsCategory));
             
             _presenters.Add(new CoreStartGamePresenter(_manager, StartView));
             

@@ -1,16 +1,16 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Grid.GridExpansion
+namespace Earth.Grid.GridExpansion
 {
-    public class GridExpansionModel
+    public class EarthGridExpansionModel
     {
         public event Action OnLevelUpdate;
         
         public int CurrentExpansionBuildingLevel;
         public Vector2 CurrentGridSize { get; private set; }
 
-        public GridExpansionModel()
+        public EarthGridExpansionModel()
         {
             CurrentExpansionBuildingLevel = (int)ExpansionBuildingLevels.Default;
             UpdateGridSize((int)ExpansionLevelsScaleUpgrade.Default);
