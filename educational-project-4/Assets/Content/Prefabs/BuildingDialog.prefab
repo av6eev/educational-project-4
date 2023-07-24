@@ -350,10 +350,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d16ca2c6ad944e05a04804b1b0ff7c8d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DescriptionTxt: {fileID: 4472683015184217448}
-  CurrentLvlTxt: {fileID: 6042254061850733963}
-  UpgradeLevelBtn: {fileID: 7176606832425519325}
-  PreviewImage: {fileID: 2744469759671985000}
+  <DescriptionTxt>k__BackingField: {fileID: 4472683015184217448}
+  <CurrentLvlTxt>k__BackingField: {fileID: 6042254061850733963}
+  <UpgradeLevelBtn>k__BackingField: {fileID: 7176606832425519325}
+  <PreviewImage>k__BackingField: {fileID: 2744469759671985000}
 --- !u!1 &4472683015184217450
 GameObject:
   m_ObjectHideFlags: 0

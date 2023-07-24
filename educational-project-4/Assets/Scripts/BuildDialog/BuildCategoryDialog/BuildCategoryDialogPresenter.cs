@@ -24,13 +24,13 @@ namespace BuildDialog.BuildCategoryDialog
         
         public void Deactivate()
         {
-            _view.Down -= OnClick;
+            _view.OnMouseDown -= OnClick;
             _model.OnDataClear -= ClearData;
         }
 
         public void Activate()
         {
-            _view.Down += OnClick;
+            _view.OnMouseDown += OnClick;
             _model.OnDataClear += ClearData;
         }
 

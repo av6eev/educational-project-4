@@ -6,19 +6,25 @@ namespace Core.Grid
 {
     public class BaseGridView : MonoBehaviour
     {
-        public GameObject GridRoot;
-        public GameObject CellSelectedIndicator;
+        [field: SerializeField] public GameObject GridRoot { get; private set; }
+        [field: SerializeField] public GameObject CellSelectedIndicator { get; private set; } 
+        [field: SerializeField] public Material PreviewMaterial { get; private set; }
+        [field: SerializeField] public LayerMask PlacementMask { get; private set; }
         
-        [NonSerialized] public Material PreviewMaterialInstance;
-        public Material PreviewMaterial;
-        public LayerMask PlacementMask;
+        [field: NonSerialized] public Material PreviewMaterialInstance { get; private set; }
+        [field: NonSerialized] public SpriteRenderer CellSelectedIndicatorRenderer { get; private set; }
+        [field: NonSerialized] public BuildingView PreviewObject { get; private set; } 
         
-        [NonSerialized] public SpriteRenderer CellSelectedIndicatorRenderer;
-        [NonSerialized] public BuildingView PreviewObject; 
+        private void Start()
+        {
+            CellSelectedIndicatorRenderer = CellSelectedIndicator.GetComponentInChildren<SpriteRenderer>();
+            PreviewMaterialInstance = new Material(PreviewMaterial);
+        }
         
         public virtual void CreatePreview(BuildingView prefab)
         {
             PreviewObject = Instantiate(prefab);
+            PreviewObject.gameObject.layer = 2;
         }
 
         public virtual void DestroyPreview()

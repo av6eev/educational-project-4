@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u041A\u0430\u043F\u0438\u0442\u043E\u043B\u0438\u0439"
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 7d7fb8bbcd4a0614eafc542aa765523e, type: 2}
   m_sharedMaterial: {fileID: 48268210848354667, guid: 7d7fb8bbcd4a0614eafc542aa765523e,
@@ -202,7 +202,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 1
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d237cb86e893ea8408c7ee24e397ed2d, type: 2}
   m_sharedMaterial: {fileID: -8733137309659916193, guid: d237cb86e893ea8408c7ee24e397ed2d,
@@ -485,6 +485,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2938191a39e4f17962edb625bb3f111, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleTxt: {fileID: 3250693989965328543}
-  LimitTxt: {fileID: 8648650439866948254}
-  PreviewImage: {fileID: 4499985229401223100}
+  <TitleTxt>k__BackingField: {fileID: 3250693989965328543}
+  <LimitTxt>k__BackingField: {fileID: 8648650439866948254}
+  <PreviewImage>k__BackingField: {fileID: 4499985229401223100}

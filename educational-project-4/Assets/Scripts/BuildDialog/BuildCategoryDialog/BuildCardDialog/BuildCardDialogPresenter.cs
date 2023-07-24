@@ -20,13 +20,13 @@ namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
         
         public void Deactivate()
         {
-            _view.Down -= OnClick;
+            _view.OnMouseDown -= OnClick;
             _model.OnLimitUpdated -= RedrawLimit;
         }
 
         public void Activate()
         {
-            _view.Down += OnClick;
+            _view.OnMouseDown += OnClick;
             _model.OnLimitUpdated += RedrawLimit;
         }
 

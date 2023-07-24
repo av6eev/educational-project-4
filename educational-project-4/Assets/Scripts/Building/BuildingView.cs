@@ -1,5 +1,5 @@
 ﻿using System;
-using BuildingDialog;
+using Building.Dialog;
 using UnityEngine;
 
 namespace Building
@@ -7,7 +7,8 @@ namespace Building
     public class BuildingView : MonoBehaviour
     {
         public event Action OnClick;
-        public BuildingDialogView DialogPrefab;
+        
+        [field: SerializeField] public BuildingDialogView DialogPrefab { get; private set; }
 
         private void OnMouseUpAsButton()
         {

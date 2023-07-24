@@ -7,14 +7,14 @@ namespace BuildDialog
 {
     public class BuildDialogView : MonoBehaviour
     {
-        public RectTransform CategoriesContentRoot;
-        public GameObject CategoriesRoot;
-        public BuildCategoryDialogView CategoryCellPrefab;
+        [field: SerializeField] public RectTransform CategoriesContentRoot { get; private set; }
+        [field: SerializeField] public GameObject CategoriesRoot { get; private set; }
+        [field: SerializeField] public BuildCategoryDialogView CategoryCellPrefab { get; private set; }
         
-        public RectTransform BuildingContentRoot;
-        public GameObject BuildingRoot;
+        [field: SerializeField] public RectTransform BuildingContentRoot { get; private set; }
+        [field: SerializeField] public GameObject BuildingRoot { get; private set; }
         
-        public Button ToggleButton;
+        [field: SerializeField] public Button ToggleButton { get; private set; }
 
         private readonly List<BuildCategoryDialogView> _categories = new();
 

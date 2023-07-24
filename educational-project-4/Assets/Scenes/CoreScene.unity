@@ -287,13 +287,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 172ec3e27cec4d70aa7b8527d4729295, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CategoriesContentRoot: {fileID: 1356819942}
-  CategoriesRoot: {fileID: 650656027}
-  CategoryCellPrefab: {fileID: 6534103497992271704, guid: 959561ee6a70620438d3d00dfee1b007,
+  <CategoriesContentRoot>k__BackingField: {fileID: 1356819942}
+  <CategoriesRoot>k__BackingField: {fileID: 650656027}
+  <CategoryCellPrefab>k__BackingField: {fileID: 6534103497992271704, guid: 959561ee6a70620438d3d00dfee1b007,
     type: 3}
-  BuildingContentRoot: {fileID: 782147145}
-  BuildingRoot: {fileID: 174710334}
-  ToggleButton: {fileID: 696936485}
+  <BuildingContentRoot>k__BackingField: {fileID: 782147145}
+  <BuildingRoot>k__BackingField: {fileID: 174710334}
+  <ToggleButton>k__BackingField: {fileID: 696936485}
 --- !u!1 &378675242
 GameObject:
   m_ObjectHideFlags: 0
@@ -429,7 +429,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 525212204}
-  m_Enabled: 1
+  m_Enabled: 0
 --- !u!20 &525212207
 Camera:
   m_ObjectHideFlags: 0
@@ -486,7 +486,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &636904654
 GameObject:
@@ -677,7 +677,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 54.937622, y: -54.937622}
+  m_AnchoredPosition: {x: 55, y: -60}
   m_SizeDelta: {x: 85.6644, y: 85.6644}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &696936485
@@ -772,6 +772,7 @@ GameObject:
   m_Component:
   - component: {fileID: 739839230}
   - component: {fileID: 739839231}
+  - component: {fileID: 739839232}
   m_Layer: 0
   m_Name: StartPresenter
   m_TagString: Untagged
@@ -806,55 +807,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45cb9200cfe945b9995086a5f2a537dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  StartView: {fileID: 748435303}
---- !u!1 &748435301
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 748435302}
-  - component: {fileID: 748435303}
-  m_Layer: 0
-  m_Name: StartView
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &748435302
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748435301}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &748435303
+  StartView: {fileID: 739839232}
+--- !u!114 &739839232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 748435301}
+  m_GameObject: {fileID: 739839229}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e317d612e6a74fc08ef08d36104c48b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MainCamera: {fileID: 525212207}
-  MainUIRoot: {fileID: 933219575}
-  BuildDialogView: {fileID: 223594596}
-  DescriptionsCollection: {fileID: 11400000, guid: 86143d46bfed3644aaef5309b7e3f18a,
+  <MainCamera>k__BackingField: {fileID: 525212207}
+  <MainUIRoot>k__BackingField: {fileID: 933219575}
+  <BuildDialogView>k__BackingField: {fileID: 223594596}
+  <DescriptionsCollection>k__BackingField: {fileID: 11400000, guid: 86143d46bfed3644aaef5309b7e3f18a,
     type: 2}
 --- !u!1 &782147144
 GameObject:
@@ -937,7 +906,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &933219576
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1013,11 +982,11 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223594595}
-  - {fileID: 696936484}
   - {fileID: 49045849}
   - {fileID: 378675243}
+  - {fileID: 696936484}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

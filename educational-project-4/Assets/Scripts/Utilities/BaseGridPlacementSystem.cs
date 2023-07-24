@@ -6,32 +6,30 @@ namespace Utilities
 {
     public abstract class BaseGridPlacementSystem
     {
-        protected virtual Vector3 GetMouseWorldPosition(Camera mainCamera, LayerMask layerMask)
+        protected virtual Vector3 GetMouseWorldPosition(Camera mainCamera)
         {
             var mousePosition = Input.mousePosition;
             mousePosition.z = mainCamera.nearClipPlane;
             
-            return Physics.Raycast(mainCamera.ScreenPointToRay(mousePosition), out var hit, 3000, layerMask) ? hit.point : Vector3.zero;
+            return Physics.Raycast(mainCamera.ScreenPointToRay(mousePosition), out var hit, 3000) ? hit.point : Vector3.zero;
         }
 
-        protected virtual CosmicShipFloorCellModel GetGridPosition(Dictionary<Vector2, CosmicShipFloorCellModel> cells, Vector3 mouseWorldPosition)
+        protected virtual Vector3Int GetGridPosition(Dictionary<Vector3, CosmicShipFloorCellModel> cells, Vector3 mouseWorldPosition)
         {
-            var position = new Vector2Int((int)mouseWorldPosition.x, (int)mouseWorldPosition.z);
-
-            return cells.TryGetValue(position, out var cell) ? cell : null;
+            return new Vector3Int((int)mouseWorldPosition.x, (int)mouseWorldPosition.y, (int)mouseWorldPosition.z);
         }
 
-        protected abstract bool IsPlacementValid(CosmicShipFloorCellModel cell, Vector2Int buildingSize);
+        protected abstract bool IsPlacementValid(Vector3Int cell, Vector2Int buildingSize);
         
-        protected virtual List<Vector2> CalculatePosition(Vector2Int gridPosition, Vector2Int size)
+        protected virtual List<Vector3> CalculatePosition(Vector3Int gridPosition, Vector2Int size)
         {
-            var returnValues = new List<Vector2>();
+            var returnValues = new List<Vector3>();
 
             for (var x = 0; x < size.x; x++)
             {
-                for (var y = 0; y < size.y; y++)
+                for (var z = 0; z < size.y; z++)
                 {
-                    returnValues.Add(gridPosition + new Vector2(x,y));
+                    returnValues.Add(gridPosition + new Vector3(x, 0, z));
                 }
             }
 

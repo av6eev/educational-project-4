@@ -8,12 +8,6 @@ namespace Earth.Grid
     {
         public UnityEngine.Grid Grid;
         
-        private void Start()
-        {
-            CellSelectedIndicatorRenderer = CellSelectedIndicator.GetComponentInChildren<SpriteRenderer>();
-            PreviewMaterialInstance = new Material(PreviewMaterial);
-        }
-
         public (Vector3, BuildingView) CreateBuilding(BuildingView prefab, Vector3Int gridPosition)
         {
             var building = Instantiate(prefab);

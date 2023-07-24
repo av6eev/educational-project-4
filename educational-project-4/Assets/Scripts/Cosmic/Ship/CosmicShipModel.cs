@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Building;
-using Cosmic.Ship.FloorCell;
+using Cosmic.Ship.Floor;
 using Descriptions.Builds.BuildsCategory.Buildings;
 using UnityEngine;
 using Utilities;
@@ -10,15 +9,13 @@ namespace Cosmic.Ship
 {
     public class CosmicShipModel : PlacementHandlerModel
     {
-        public event Action<Vector2> OnBuildingPlaced;
+        public event Action<Vector3> OnBuildingPlaced;
         public event Action OnBuildingSelected;
         
-        public readonly Dictionary<Vector2, CosmicShipFloorCellModel> FloorCells = new();
-
+        public readonly List<CosmicShipFloorModel> Floors = new();
         public override BuildingDescription LastSelectedBuilding { get; set; }
-        public override Dictionary<Vector2, BuildingModel> RegisteredBuildings { get; protected set; } = new();
         
-        public override void PlaceBuilding(Vector2 gridPosition)
+        public override void PlaceBuilding(Vector3 gridPosition)
         {
             OnBuildingPlaced?.Invoke(gridPosition);
         }

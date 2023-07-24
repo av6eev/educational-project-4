@@ -5,9 +5,9 @@ namespace Utilities.Helpers
 {
     public static class BuildingPreviewHelper
     {
-        public static void UpdatePreviewPosition<T>(T view, Vector2Int position, bool isValid) where T : BaseGridView
+        public static void UpdatePreviewPosition<T>(T view, Vector3Int position, bool isValid) where T : BaseGridView
         {
-            if (position == Vector2Int.zero) return;
+            if (position == Vector3Int.zero) return;
             
             var color = isValid ? Color.green : Color.red;
             color.a = .5f;
@@ -15,8 +15,8 @@ namespace Utilities.Helpers
             view.CellSelectedIndicatorRenderer.color = color;
             view.PreviewMaterialInstance.color = color;
             
-            view.CellSelectedIndicator.transform.position = Vector3.Lerp(view.CellSelectedIndicator.transform.position, new Vector3(position.x, 0, position.y), .2f);
-            view.PreviewObject.transform.position = Vector3.Lerp(view.PreviewObject.transform.position, new Vector3(position.x, .06f, position.y), .2f);
+            view.CellSelectedIndicator.transform.position = Vector3.Lerp(view.CellSelectedIndicator.transform.position, position, .2f);
+            view.PreviewObject.transform.position = Vector3.Lerp(view.PreviewObject.transform.position, new Vector3(position.x, position.y + .06f, position.z), .2f);
         }
         
         public static void SettingCursor<T>(T view, Vector2Int size) where T : BaseGridView

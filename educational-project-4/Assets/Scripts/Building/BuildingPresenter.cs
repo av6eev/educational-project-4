@@ -1,4 +1,4 @@
-﻿using BuildingDialog;
+﻿using Building.Dialog;
 using UnityEngine;
 using Utilities;
 

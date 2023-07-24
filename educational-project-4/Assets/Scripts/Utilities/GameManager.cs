@@ -3,7 +3,7 @@ using BuildingsStatistic;
 using Core;
 using Cosmic.Ship;
 using Earth.Grid;
-using Earth.Grid.GridExpansion;
+using Earth.Grid.Expansion;
 
 namespace Utilities
 {

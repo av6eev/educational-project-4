@@ -8,15 +8,30 @@ namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogView : MonoBehaviour, IPointerDownHandler
     {
-        public event Action Down;
+        public event Action OnMouseDown;
 
-        public TextMeshProUGUI TitleTxt;
-        public TextMeshProUGUI LimitTxt;
-        public Image PreviewImage;
+        [field: SerializeField] public TextMeshProUGUI TitleTxt { get; private set; }
+        [field: SerializeField] public TextMeshProUGUI LimitTxt { get; private set; }
+        [field: SerializeField] public Image PreviewImage { get; private set; }
         
         public void OnPointerDown(PointerEventData eventData)
         {
-            Down?.Invoke();   
+            OnMouseDown?.Invoke();   
+        }
+
+        public void SetupCard(string limit, string title, Sprite image)
+        {
+            LimitTxt.text = limit;
+            TitleTxt.text = title;
+            
+            if (image != null)
+            {
+                PreviewImage.sprite = image;
+            }
+            else
+            {
+                PreviewImage.gameObject.SetActive(false);
+            }
         }
     }
 }

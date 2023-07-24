@@ -4,9 +4,9 @@ namespace Cosmic.Ship.FloorCell
 {
     public class CosmicShipFloorCellModel
     {
-        public Vector2Int Position;
+        public Vector3Int Position;
 
-        public CosmicShipFloorCellModel(Vector2Int position)
+        public CosmicShipFloorCellModel(Vector3Int position)
         {
             Position = position;
         }

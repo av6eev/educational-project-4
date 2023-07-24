@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace Earth.Grid.GridExpansion
+namespace Earth.Grid.Expansion
 {
     public class EarthGridExpansionModel
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Building;
-using Cosmic.Ship.FloorCell;
+using Cosmic.Ship.Floor;
 using Descriptions.Builds.BuildsCategory.Buildings;
 using UnityEngine;
 using Utilities;
@@ -15,7 +15,7 @@ namespace Cosmic.Ship
         private readonly CosmicShipModel _model;
         private readonly CosmicShipView _view;
         
-        private readonly PresentersEngine _cellPresenters = new();
+        private readonly PresentersEngine _floorsPresenters = new();
         private readonly GameManager _gameManager;
 
         public CosmicShipPresenter(CosmicLocationManager manager, CosmicShipModel model, CosmicShipView view)
@@ -28,22 +28,38 @@ namespace Cosmic.Ship
         
         public void Deactivate()
         {
-            _model.OnBuildingPlaced -= CreateBuilding;
-            _model.OnBuildingSelected -= BuildingSelected;
+            _view.NextFloorBtn.onClick.RemoveListener(OnSelectNextFloor);
+            _view.PreviousFloorBtn.onClick.RemoveListener(OnSelectPreviousFloor);
             
-            _cellPresenters.Deactivate();
-            _cellPresenters.Clear();
+            _model.OnBuildingPlaced -= BuildingPlaced;
+            _model.OnBuildingSelected -= BuildingSelected;
+
+            _floorsPresenters.Deactivate();
+            _floorsPresenters.Clear();
         }
 
         public void Activate()
         {
-            GenerateCells();
-
+            CreateFloorData();
+            
+            _view.NextFloorBtn.onClick.AddListener(OnSelectNextFloor);
+            _view.PreviousFloorBtn.onClick.AddListener(OnSelectPreviousFloor);
+            
             _model.OnBuildingSelected += BuildingSelected;
-            _model.OnBuildingPlaced += CreateBuilding;
+            _model.OnBuildingPlaced += BuildingPlaced;
         }
 
-        private void CreateBuilding(Vector2 gridPosition)
+        private void OnSelectNextFloor()
+        {
+            LoadFloors(1);    
+        }
+        
+        private void OnSelectPreviousFloor()
+        {
+            LoadFloors(-1);    
+        }
+        
+        private void BuildingPlaced(Vector3 gridPosition)
         {
             if (_gameManager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0)
             {
@@ -52,7 +68,7 @@ namespace Cosmic.Ship
                 return;
             }
             
-            AddNewBuilding(gridPosition, _model.LastSelectedBuilding);
+            CreateNewBuilding(gridPosition, _model.LastSelectedBuilding);
             
             _gameManager.CoreStartView.BuildDialogView.BuildingRoot.SetActive(true);
             _gameManager.CoreStartView.BuildDialogView.CategoriesRoot.SetActive(true);
@@ -60,34 +76,35 @@ namespace Cosmic.Ship
             ChangePlacementMode(false);
         }
         
-        private void AddNewBuilding(Vector2 gridPosition, BuildingDescription description)
+        private void CreateNewBuilding(Vector3 gridPosition, BuildingDescription description)
         {
-            var takenPosition = new List<Vector2>();
+            var takenPosition = new List<Vector3>();
             
             for (var x = 0; x < description.Size.x; x++)
             {
-                for (var y = 0; y < description.Size.y; y++)
+                for (var z = 0; z < description.Size.y; z++)
                 {
-                    takenPosition.Add(gridPosition + new Vector2(x,y));
+                    takenPosition.Add(gridPosition + new Vector3(x, gridPosition.y, z));
                 }
             }
             
             var model = new BuildingModel(description.Id, description, takenPosition);
-            var buildingView = _view.InstantiateBuilding(description.Prefab, gridPosition);
-            new BuildingPresenter(_gameManager, model, buildingView).Activate();
+            var activeFloor = _model.Floors.Find(floor => floor.IsActive);
             
-            _gameManager.StatisticModel.Buildings.Add(model);
-
             foreach (var position in takenPosition)
             {
-                if (_model.RegisteredBuildings.ContainsKey(position))
+                if (activeFloor.RegisteredBuildings.ContainsKey(position))
                 {
                     throw new Exception($"Cell {position} already contains in dictionary");
                 }
 
-                _model.RegisteredBuildings[position] = model;
+                activeFloor.RegisteredBuildings[position] = model;
             }
             
+            var buildingView = _view.InstantiateBuilding(description.Prefab, gridPosition, activeFloor.Index);
+            new BuildingPresenter(_gameManager, model, buildingView).Activate();
+            
+            _gameManager.StatisticModel.Buildings.Add(model);
             _gameManager.StatisticModel.UpdateLimit(model.Id);
         }
 
@@ -137,21 +154,95 @@ namespace Cosmic.Ship
             _view.CellSelectedIndicator.SetActive(true);
         }
         
-        private void GenerateCells()
+        private void CreateFloorData()
         {
-            var positions = _manager.CosmicSceneView.CosmicView.DrawingHelper.Positions;
-            var cells = CosmicShipFloorCalculationsHelper.DefineCellsInsideGivenArea(positions);
-
-            foreach (var cell in cells)
+            foreach (var level in _manager.CosmicSceneView.CosmicView.LevelsPositions)
             {
-                var model = new CosmicShipFloorCellModel(cell);
-                var presenter = new CosmicShipFloorCellPresenter(_gameManager, model, _view.InstantiateCell(cell));
-
-                _model.FloorCells.Add(cell, model);
-                _cellPresenters.Add(presenter);
+                var model = new CosmicShipFloorModel(level.Key);
+                
+                if (level.Key == 0)
+                {
+                    model.IsActive = true;
+                }
+                
+                var view = _view.LevelFloorRoots[level.Key];
+                var presenter = new CosmicShipFloorPresenter(_manager, model, view);    
+                
+                presenter.Activate();
+                
+                _floorsPresenters.Add(presenter);
+                _model.Floors.Add(model);
             }
 
-            _cellPresenters.Activate();
+            LoadFloors();
+        }
+
+        private void LoadFloors(int nextFloorDir = 0)
+        {
+            var floorViews = _view.LevelFloorRoots;
+            var floorModels = _model.Floors;
+            var currentFloor = floorModels.Find(item => item.IsActive);
+            CosmicShipFloorModel nextFloor;
+
+            if (currentFloor.Index == 0 && nextFloorDir == -1) return;
+            
+            if (nextFloorDir != 0)
+            {
+                nextFloor = floorModels.Find(item => item.Index == currentFloor.Index + nextFloorDir);
+            }
+            else
+            {
+                nextFloor = floorModels[currentFloor.Index + 1];
+                currentFloor.Load();
+                currentFloor.IsActive = true;
+                
+                nextFloor.Load();
+                
+                floorViews[currentFloor.Index].gameObject.SetActive(true);
+                floorViews[nextFloor.Index].gameObject.SetActive(false);
+
+                foreach (var floor in floorModels.FindAll(item => item != currentFloor && item != nextFloor))
+                {
+                    floor.Unload();
+                }
+                
+                return;
+            }
+
+            if (nextFloor == null) return;
+
+            var nextByNextFloor = nextFloorDir switch
+            {
+                1 => floorModels.Find(item => item.Index == nextFloor!.Index + 1),
+                -1 => floorModels.Find(item => item.Index == nextFloor!.Index - 1),
+                _ => null
+            };
+
+            foreach (var floor in floorModels)
+            {
+                if (floor == currentFloor)
+                {
+                    floorViews[floor.Index].gameObject.SetActive(false);
+                    currentFloor.IsActive = false;
+                    continue;
+                }
+                
+                if (floor == nextFloor)
+                {
+                    floorViews[floor.Index].gameObject.SetActive(true);
+                    nextFloor.IsActive = true;
+                    continue;
+                }
+                
+                if (nextByNextFloor != null && floor == nextByNextFloor && floorViews[nextByNextFloor.Index] != null && nextFloor.Index != 0)
+                {
+                    _model.Floors[floor.Index].Load();
+                    floorViews[floor.Index].gameObject.SetActive(false);    
+                    continue;
+                }
+                
+                _model.Floors[floor.Index].Unload();          
+            }            
         }
     }
 }

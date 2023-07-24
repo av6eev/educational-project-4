@@ -6,9 +6,9 @@ namespace Core
 {
     public class CoreStartView : MonoBehaviour
     {
-        public Camera MainCamera;
-        public GameObject MainUIRoot;
-        public BuildDialogView BuildDialogView;
-        public DescriptionsCollectionSo DescriptionsCollection;
+        [field: SerializeField] public Camera MainCamera {get; private set;}
+        [field: SerializeField] public GameObject MainUIRoot {get; private set;}
+        [field: SerializeField] public BuildDialogView BuildDialogView {get; private set;}
+        [field: SerializeField] public DescriptionsCollectionSo DescriptionsCollection {get; private set;}
     }
 }

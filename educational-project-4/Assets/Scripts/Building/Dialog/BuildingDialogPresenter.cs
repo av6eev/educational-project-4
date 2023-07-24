@@ -1,7 +1,6 @@
-﻿using Earth;
-using Utilities;
+﻿using Utilities;
 
-namespace BuildingDialog
+namespace Building.Dialog
 {
     public class BuildingDialogPresenter : IPresenter
     {

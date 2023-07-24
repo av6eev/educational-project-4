@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using Utilities;
 
-namespace Earth.Grid.GridExpansion
+namespace Earth.Grid.Expansion
 {
     public class EarthGridExpansionPresenter : IPresenter
     {

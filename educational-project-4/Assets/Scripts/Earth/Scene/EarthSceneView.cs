@@ -1,7 +1,9 @@
-﻿namespace Earth.Scene
+﻿using UnityEngine;
+
+namespace Earth.Scene
 {
     public class EarthSceneView : GameSceneView
     {
-        public EarthView EarthView;
+        [field: SerializeField] public EarthView EarthView { get; private set; }
     }
 }

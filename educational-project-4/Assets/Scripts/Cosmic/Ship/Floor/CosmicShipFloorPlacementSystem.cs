@@ -1,15 +1,16 @@
-﻿using System.Linq;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using Utilities;
 using Utilities.Helpers;
 
-namespace Cosmic.Ship.FloorCell
+namespace Cosmic.Ship.Floor
 {
     public class CosmicShipFloorPlacementSystem : BaseGridPlacementSystem, ISystem
     {
         private readonly CosmicLocationManager _manager;
         private readonly CosmicShipModel _shipModel;
+
+        private CosmicShipFloorModel _activeFloor;
         
         public CosmicShipFloorPlacementSystem(CosmicLocationManager manager)
         {
@@ -20,28 +21,28 @@ namespace Cosmic.Ship.FloorCell
         public void Update(float deltaTime)
         {
             if (_shipModel.LastSelectedBuilding == null) return;
-
-            var mouseWorldPosition = GetMouseWorldPosition(_manager.CosmicSceneView.MainCamera, _manager.CosmicSceneView.CosmicShipView.PlacementMask);
-            var cell = GetGridPosition(_shipModel.FloorCells, mouseWorldPosition);
             
-            if (cell == null) return;
+            _activeFloor = _shipModel.Floors.Find(floor => floor.IsActive);
+            var mouseWorldPosition = GetMouseWorldPosition(_manager.CosmicSceneView.MainCamera);
+            var cell = GetGridPosition(_activeFloor.Cells, mouseWorldPosition);
             
             var isValid = IsPlacementValid(cell, _shipModel.LastSelectedBuilding.Size);
             
-            BuildingPreviewHelper.UpdatePreviewPosition(_manager.CosmicSceneView.CosmicShipView, cell.Position, isValid);
+            BuildingPreviewHelper.UpdatePreviewPosition(_manager.CosmicSceneView.CosmicShipView, cell, isValid);
             
             if (!EventSystem.current.IsPointerOverGameObject() && Input.GetMouseButtonDown(0) && _shipModel.LastSelectedBuilding != null && isValid)
             {
-                _shipModel.PlaceBuilding(cell.Position);
+                _shipModel.PlaceBuilding(cell);
             }
         }
 
-        protected override bool IsPlacementValid(CosmicShipFloorCellModel cell, Vector2Int buildingSize)
+        protected override bool IsPlacementValid(Vector3Int cell, Vector2Int buildingSize)
         {
-            foreach (var position in CalculatePosition(cell.Position, buildingSize))
+            foreach (var position in CalculatePosition(cell, buildingSize))
             {
-                if (_shipModel.RegisteredBuildings.ContainsKey(position)) return false;
-                if (!_manager.GameManager.ShipModel.FloorCells.ContainsKey(position)) return false;
+                _activeFloor.Cells.TryGetValue(position, out var result);
+                if (result == null) return false;
+                if (_activeFloor.RegisteredBuildings.ContainsKey(position)) return false;
             }
 
             return true;

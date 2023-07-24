@@ -271,6 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07b75e45a1e4134a13558dfc6962fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleTxt: {fileID: 5450366575845518118}
-  BuildingCellPrefab: {fileID: 3605631887839130160, guid: 84895e62fbd44804d8a8ea7b6bcc7b16,
+  <TitleTxt>k__BackingField: {fileID: 5450366575845518118}
+  <BuildCardPrefab>k__BackingField: {fileID: 3605631887839130160, guid: 84895e62fbd44804d8a8ea7b6bcc7b16,
     type: 3}

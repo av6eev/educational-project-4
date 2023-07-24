@@ -1,5 +1,5 @@
 using Earth.Grid;
-using Earth.Grid.GridExpansion;
+using Earth.Grid.Expansion;
 using Utilities;
 
 namespace Earth

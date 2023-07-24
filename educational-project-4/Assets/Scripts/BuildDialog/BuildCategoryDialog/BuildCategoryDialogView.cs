@@ -9,27 +9,17 @@ namespace BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogView : MonoBehaviour, IPointerDownHandler
     {
-        public event Action Down;
+        public event Action OnMouseDown;
         
-        public TextMeshProUGUI TitleTxt;
-        public BuildCardDialogView BuildingCellPrefab;
+        [field: SerializeField] public TextMeshProUGUI TitleTxt { get; private set; }
+        [field: SerializeField] public BuildCardDialogView BuildCardPrefab { get; private set; }
 
         private readonly List<BuildCardDialogView> _buildings = new();
         
         public BuildCardDialogView InstantiateBuildingCard(RectTransform contentRoot, string title, string limit, Sprite image)
         {
-            var view = Instantiate(BuildingCellPrefab, contentRoot);
-            view.LimitTxt.text = limit;
-            view.TitleTxt.text = title;
-            
-            if (image != null)
-            {
-                view.PreviewImage.sprite = image;
-            }
-            else
-            {
-                view.PreviewImage.gameObject.SetActive(false);
-            }
+            var view = Instantiate(BuildCardPrefab, contentRoot);
+            view.SetupCard(limit, title, image);
             
             _buildings.Add(view);
             return view;
@@ -47,7 +37,7 @@ namespace BuildDialog.BuildCategoryDialog
         
         public void OnPointerDown(PointerEventData eventData)
         {
-            Down?.Invoke();    
+            OnMouseDown?.Invoke();    
         }
     }
 }

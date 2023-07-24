@@ -143,7 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a71c4a9e137b4581b7cce03d98913102, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DialogPrefab: {fileID: 4472683014999902055, guid: 729bba07d988bb94ba989a622ff3a427,
+  <DialogPrefab>k__BackingField: {fileID: 4472683014999902055, guid: 729bba07d988bb94ba989a622ff3a427,
     type: 3}
 --- !u!65 &1135876499890967282
 BoxCollider:

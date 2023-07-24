@@ -1,6 +1,6 @@
 ﻿using Descriptions.Builds.BuildsCategory.Buildings;
 
-namespace BuildingDialog
+namespace Building.Dialog
 {
     public class BuildingDialogModel
     {

@@ -5,8 +5,8 @@ namespace Cosmic.Scene
 {
     public class CosmicSceneView : GameSceneView
     {
-        public Camera MainCamera;
-        public CosmicView CosmicView;
-        public CosmicShipView CosmicShipView;
+        [field: SerializeField] public Camera MainCamera { get; private set; }
+        [field: SerializeField] public CosmicView CosmicView { get; private set; }
+        [field: SerializeField] public CosmicShipView CosmicShipView { get; private set; }
     }
 }
