@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
-using BuildDialog.BuildCategoryDialog;
+using Dialogs.BuildDialog.BuildCategoryDialog;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace BuildDialog
+namespace Dialogs.BuildDialog
 {
     public class BuildDialogView : MonoBehaviour
     {

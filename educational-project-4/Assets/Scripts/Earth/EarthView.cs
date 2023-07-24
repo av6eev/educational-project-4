@@ -1,4 +1,4 @@
-﻿using BuildDialog;
+﻿using Dialogs.BuildDialog;
 using Earth.Grid;
 using UnityEngine;
 

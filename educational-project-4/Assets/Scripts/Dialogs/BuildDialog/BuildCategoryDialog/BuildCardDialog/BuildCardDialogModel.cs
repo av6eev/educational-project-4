@@ -1,7 +1,7 @@
 ﻿using System;
 using Descriptions.Builds.BuildsCategory.Buildings;
 
-namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogModel
     {

@@ -1,9 +1,8 @@
 ﻿using System;
-using UnityEngine;
 using UnityEngine.SceneManagement;
 using Utilities;
 
-namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogPresenter : IPresenter
     {

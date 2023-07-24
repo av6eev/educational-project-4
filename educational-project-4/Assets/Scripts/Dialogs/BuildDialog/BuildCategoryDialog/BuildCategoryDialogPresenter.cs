@@ -1,11 +1,10 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using Descriptions.Builds.BuildsCategory.Buildings;
-using Earth;
+using Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using Utilities;
 
-namespace BuildDialog.BuildCategoryDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogPresenter : IPresenter
     {
@@ -44,7 +43,7 @@ namespace BuildDialog.BuildCategoryDialog
 
         private void OnClick()
         {
-            var categoriesModels = _manager.BuildDialogModel.CategoriesModels;
+            var categoriesModels = _manager.DialogsModel.GetByType<BuildDialogModel>().CategoriesModels;
             
             if (categoriesModels.Any(category => category.IsActive && _model == category)) return;            
             
@@ -62,7 +61,7 @@ namespace BuildDialog.BuildCategoryDialog
             {
                 var remainingLimit = _manager.StatisticModel.BuildingLimits[description.Description.Id];
                 var model = new BuildCardDialogModel(description.Description);
-                var view = _view.InstantiateBuildingCard(_manager.CoreStartView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
+                var view = _view.InstantiateBuildingCard(_manager.CoreStartView.DialogsView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
 
                 if (remainingLimit == 0)
                 {
@@ -78,7 +77,7 @@ namespace BuildDialog.BuildCategoryDialog
             _model.Description.Buildings = new List<BuildingDescriptionSo>(sortedDescriptions);
             
             _presenters.Activate();
-            _manager.CoreStartView.BuildDialogView.BuildingRoot.SetActive(true);
+            _manager.CoreStartView.DialogsView.BuildDialogView.BuildingRoot.SetActive(true);
         }
     }
 }

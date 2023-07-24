@@ -1,4 +1,5 @@
-﻿using Earth;
+﻿using Dialogs.BuildDialog;
+using Earth;
 using Utilities;
 
 namespace BuildingsStatistic
@@ -27,7 +28,7 @@ namespace BuildingsStatistic
         private void UpdateLimits(string buildingId)
         {
             var neededDescription = _manager.Descriptions.Buildings.Find(item => item.Id == buildingId);
-            var neededCategory = _manager.BuildDialogModel.CategoriesModels.Find(item => item.Description.Category == neededDescription.Category);
+            var neededCategory = _manager.DialogsModel.GetByType<BuildDialogModel>().CategoriesModels.Find(item => item.Description.Category == neededDescription.Category);
             var neededCard = neededCategory.CardsModels.Find(item => item.Description.Id == buildingId);
                 
             neededCard.RedrawLimitText(_model.BuildingLimits[buildingId]);

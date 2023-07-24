@@ -1,8 +1,8 @@
-﻿using BuildDialog.BuildCategoryDialog;
-using Earth;
+﻿using Dialogs.BuildDialog.BuildCategoryDialog;
+using Dialogs.ChangeFloorDialog;
 using Utilities;
 
-namespace BuildDialog
+namespace Dialogs.BuildDialog
 {
     public class BuildDialogPresenter : IPresenter
     {
@@ -43,6 +43,8 @@ namespace BuildDialog
             switch (state)
             {
                 case true:
+                    _manager.DialogsModel.GetByType<ChangeFloorDialogModel>().Hide();
+                    
                     foreach (var description in _manager.Descriptions.BuildsCategory)
                     {
                         var model = new BuildCategoryDialogModel(description);
@@ -56,11 +58,15 @@ namespace BuildDialog
                     break;
                 case false:
                     _view.ClearCategories();
+                    
                     var activeCategory = _model.CategoriesModels.Find(item => item.IsActive);
                     activeCategory?.ClearData();
+                    
                     _model.CategoriesModels.Clear();
                     _presenters.Deactivate();
                     _presenters.Clear();
+                    
+                    _manager.DialogsModel.GetByType<ChangeFloorDialogModel>().Show();
                     break;
             }
             

@@ -11,6 +11,7 @@ namespace Cosmic.Ship
     {
         public event Action<Vector3> OnBuildingPlaced;
         public event Action OnBuildingSelected;
+        public event Action<int> OnFloorChanged;
         
         public readonly List<CosmicShipFloorModel> Floors = new();
         public override BuildingDescription LastSelectedBuilding { get; set; }
@@ -24,6 +25,11 @@ namespace Cosmic.Ship
         {
             base.SelectBuilding(description);
             OnBuildingSelected?.Invoke();
+        }
+
+        public void ChangeFloor(int nextFloorDir)
+        {
+            OnFloorChanged?.Invoke(nextFloorDir);
         }
     }
 }

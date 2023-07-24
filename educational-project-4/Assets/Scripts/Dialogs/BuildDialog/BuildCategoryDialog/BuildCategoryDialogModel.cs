@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using Descriptions.Builds.BuildsCategory;
+using Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog;
 
-namespace BuildDialog.BuildCategoryDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogModel
     {

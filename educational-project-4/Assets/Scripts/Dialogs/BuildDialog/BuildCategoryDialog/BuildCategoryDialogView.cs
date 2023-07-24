@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using BuildDialog.BuildCategoryDialog.BuildCardDialog;
+using Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace BuildDialog.BuildCategoryDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog
 {
     public class BuildCategoryDialogView : MonoBehaviour, IPointerDownHandler
     {

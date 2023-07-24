@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace BuildDialog.BuildCategoryDialog.BuildCardDialog
+namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
     public class BuildCardDialogView : MonoBehaviour, IPointerDownHandler
     {

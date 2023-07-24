@@ -1,5 +1,5 @@
-﻿using BuildDialog;
-using BuildingsStatistic;
+﻿using BuildingsStatistic;
+using Dialogs.Base;
 using UnityEngine;
 using Utilities;
 
@@ -29,7 +29,7 @@ namespace Core.Game
         public void Activate()
         {
             _presenters.Add(new BuildingsStatisticPresenter(_manager, _manager.StatisticModel));
-            _presenters.Add(new BuildDialogPresenter(_manager, _manager.BuildDialogModel, _view.BuildDialogView));
+            _presenters.Add(new DialogsPresenter(_manager, _manager.DialogsModel, _view.DialogsView));
             
             _presenters.Activate();
             
