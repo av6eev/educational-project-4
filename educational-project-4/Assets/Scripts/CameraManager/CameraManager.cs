@@ -1,5 +1,6 @@
 ﻿using Cinemachine;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace CameraManager
 {
@@ -67,6 +68,7 @@ namespace CameraManager
         private void HandleZoom()
         {
             if (Input.mouseScrollDelta == Vector2.zero) return;
+            if (EventSystem.current.IsPointerOverGameObject()) return;
             
             var cachedTransformPosition = transform.position;
             var offsetToTarget = OffsetToTarget;

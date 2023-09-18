@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 using UnityEngine;
 
 namespace Building
@@ -9,18 +9,26 @@ namespace Building
     {
         public event Action OnDialogClosed, OnLevelUpdated;
         
-        public string Id { get; private set; }
-        public List<Vector3Int> TakenPositions;
-        public int CurrentUpgradeLevel = 1;
-        
-        public readonly BuildingDescription Description;
+        private string _id;
+        public string Id
+        {
+            get => _id;
+            private set
+            {
+                if (Convert.ToInt32(value) < 0) return;
+                _id = value;
+            }
+        }
 
-        public bool HasActiveDialog;
+        public List<Vector3> TakenPositions { get; private set; }
+        public BuildingSpecification Specification { get; private set; }
+        public int CurrentUpgradeLevel { get; private set; } = 1;
+        public bool HasActiveDialog { get; set; }
 
-        public BuildingModel(string id, BuildingDescription description, List<Vector3Int> takenPositions)
+        public BuildingModel(string id, BuildingSpecification specification, List<Vector3> takenPositions)
         {
             Id = id;
-            Description = description;
+            Specification = specification;
             TakenPositions = takenPositions;
         }
 

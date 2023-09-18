@@ -66,10 +66,11 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0410\u0434\u043C\u0438\u043D\u0438\u0441\u0442\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
+  m_text: 
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 7d7fb8bbcd4a0614eafc542aa765523e, type: 2}
+  m_sharedMaterial: {fileID: 48268210848354667, guid: 7d7fb8bbcd4a0614eafc542aa765523e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -270,6 +271,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07b75e45a1e4134a13558dfc6962fa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TitleTxt: {fileID: 5450366575845518118}
-  BuildingCellPrefab: {fileID: 3605631887839130160, guid: 84895e62fbd44804d8a8ea7b6bcc7b16,
+  <TitleTxt>k__BackingField: {fileID: 5450366575845518118}
+  <BuildCardPrefab>k__BackingField: {fileID: 3605631887839130160, guid: 84895e62fbd44804d8a8ea7b6bcc7b16,
     type: 3}

@@ -1,4 +1,4 @@
-﻿using BuildingDialog;
+﻿using Dialogs.BuildingDialog;
 using UnityEngine;
 using Utilities;
 
@@ -35,10 +35,10 @@ namespace Building
 
         private void LevelUpdated()
         {
-            if (_model.Description.Category.Equals("Главное"))
+            if (_model.Specification.Category.Equals("Главное"))
             {
                 Debug.Log(_model.CurrentUpgradeLevel);
-                _manager.ExpansionModel.UpdateExpansionLevel(_model.CurrentUpgradeLevel);
+                // _manager.ExpansionModel.UpdateExpansionLevel(_model.CurrentUpgradeLevel);
             }
         }
 
@@ -56,9 +56,9 @@ namespace Building
             
             _model.HasActiveDialog = true;
             
-            var neededDialogDescription = _manager.Descriptions.BuildingDialogs.Find(item => item.Id == _model.Description.DialogId);
-            var model = new BuildingDialogModel(_model.Description);
-            var view = _view.InstantiateDialogView(neededDialogDescription?.Description, _model.CurrentUpgradeLevel);
+            var neededDialogSpecification = _manager.Specifications.BuildingDialogs.Find(item => item.Id == _model.Specification.DialogId);
+            var model = new BuildingDialogModel(_model.Specification);
+            var view = _view.InstantiateDialogView(neededDialogSpecification?.Specification, _model.CurrentUpgradeLevel, neededDialogSpecification?.PreviewImage);
             var presenter = new BuildingDialogPresenter(_manager, model, view);
             
             presenter.Activate();
