@@ -1,5 +1,5 @@
-﻿using Descriptions.Base;
-using Dialogs.Base;
+﻿using Dialogs.Base;
+using Specifications.Base;
 using UnityEngine;
 
 namespace Core
@@ -9,6 +9,6 @@ namespace Core
         [field: SerializeField] public Camera MainCamera { get; private set; }
         [field: SerializeField] public GameObject MainUIRoot { get; private set; }
         [field: SerializeField] public DialogsView DialogsView { get; private set; }
-        [field: SerializeField] public DescriptionsCollectionSo DescriptionsCollection { get; private set; }
+        [field: SerializeField] public SpecificationsCollectionSo SpecificationsCollection { get; private set; }
     }
 }

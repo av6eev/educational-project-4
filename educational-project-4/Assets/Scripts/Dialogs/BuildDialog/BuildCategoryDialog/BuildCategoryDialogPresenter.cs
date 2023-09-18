@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Descriptions.Builds.BuildsCategory.Buildings;
 using Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog;
+using Specifications.Builds.Buildings;
 using Utilities;
 
 namespace Dialogs.BuildDialog.BuildCategoryDialog
@@ -25,6 +25,8 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog
         {
             _view.OnMouseDown -= OnClick;
             _model.OnDataClear -= ClearData;
+            
+            ClearData();
         }
 
         public void Activate()
@@ -47,7 +49,7 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog
             
             if (categoriesModels.Any(category => category.IsActive && _model == category)) return;            
             
-            foreach (var model in categoriesModels.FindAll(item => item.Description.Category != _model.Description.Category))
+            foreach (var model in categoriesModels.FindAll(item => item.Specification.Category != _model.Specification.Category))
             {
                 model.IsActive = false;
                 model.ClearData();
@@ -55,13 +57,13 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog
             
             _model.IsActive = true;
             
-            var sortedDescriptions = _model.Description.Buildings.OrderBy(item => item.Description.Priority).ToArray();
+            var sortedSpecifications = _model.Specification.Buildings.OrderBy(item => item.Specification.Priority).ToArray();
 
-            foreach (var description in sortedDescriptions)
+            foreach (var specification in sortedSpecifications)
             {
-                var remainingLimit = _manager.StatisticModel.BuildingLimits[description.Description.Id];
-                var model = new BuildCardDialogModel(description.Description);
-                var view = _view.InstantiateBuildingCard(_manager.CoreStartView.DialogsView.BuildDialogView.BuildingContentRoot, model.Description.Title, remainingLimit.ToString(), model.Description.PreviewImage);
+                var remainingLimit = _manager.StatisticModel.BuildingLimits[specification.Specification.Id];
+                var model = new BuildCardDialogModel(specification.Specification);
+                var view = _view.InstantiateBuildingCard(_manager.CoreStartView.DialogsView.BuildDialogView.BuildingContentRoot, model.Specification.Title, remainingLimit.ToString(), model.Specification.PreviewImage);
 
                 if (remainingLimit == 0)
                 {
@@ -74,7 +76,7 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog
                 _presenters.Add(presenter);
             }
             
-            _model.Description.Buildings = new List<BuildingDescriptionSo>(sortedDescriptions);
+            _model.Specification.Buildings = new List<BuildingSpecificationSo>(sortedSpecifications);
             
             _presenters.Activate();
             _manager.CoreStartView.DialogsView.BuildDialogView.BuildingRoot.SetActive(true);

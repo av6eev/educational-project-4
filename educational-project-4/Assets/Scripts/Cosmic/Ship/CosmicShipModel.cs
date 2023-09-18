@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Cosmic.Ship.Floor;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 using UnityEngine;
 using Utilities;
 
@@ -14,16 +14,17 @@ namespace Cosmic.Ship
         public event Action<int> OnFloorChanged;
         
         public readonly List<CosmicShipFloorModel> Floors = new();
-        public override BuildingDescription LastSelectedBuilding { get; set; }
+        public CosmicShipFloorModel GetActiveFloor => Floors.Find(floor => floor.IsActive);
+        public override BuildingSpecification LastSelectedBuilding { get; set; }
         
         public override void PlaceBuilding(Vector3 gridPosition)
         {
             OnBuildingPlaced?.Invoke(gridPosition);
         }
 
-        public override void SelectBuilding(BuildingDescription description)
+        public override void SelectBuilding(BuildingSpecification specification)
         {
-            base.SelectBuilding(description);
+            base.SelectBuilding(specification);
             OnBuildingSelected?.Invoke();
         }
 

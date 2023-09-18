@@ -1,6 +1,5 @@
 ﻿using Cosmic.Ship;
 using Cosmic.Ship.Floor;
-using Cosmic.Ship.FloorCell;
 using Utilities;
 
 namespace Cosmic

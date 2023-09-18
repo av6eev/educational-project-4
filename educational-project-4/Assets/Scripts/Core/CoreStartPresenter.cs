@@ -1,7 +1,7 @@
 ﻿using BuildingsStatistic;
 using Core.Game;
 using Dialogs.Base;
-using Dialogs.BuildDialog;
+using Save;
 using UnityEngine;
 using Utilities;
 
@@ -17,8 +17,16 @@ namespace Core
 
         public void Start()
         {
-            var gameDescriptions = new GameDescriptions(StartView.DescriptionsCollection);
-            _manager = new GameManager(StartView, gameDescriptions, new SceneLoaderPresenter(), _systems, new DialogsModel(gameDescriptions), new BuildingsStatisticModel(gameDescriptions.BuildsCategory));
+            var gameSpecifications = new GameSpecifications(StartView.SpecificationsCollection);
+            
+            _manager = new GameManager(
+                StartView, 
+                gameSpecifications, 
+                new SceneLoaderPresenter(), 
+                _systems, 
+                new DialogsModel(gameSpecifications), 
+                new BuildingsStatisticModel(gameSpecifications.BuildsCategory),
+                new SaveModel());
             
             _presenters.Add(new CoreStartGamePresenter(_manager, StartView));
             
@@ -28,6 +36,14 @@ namespace Core
         public void Update()
         {
             _systems.Update(Time.deltaTime);
+        }
+
+        private void OnApplicationQuit()
+        {
+            _manager.SaveModel.Save();
+            
+            _presenters.Deactivate();
+            _presenters.Clear();
         }
     }
 }

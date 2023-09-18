@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0232ad63b3d4ea8bedf898f9e881a2a, type: 3}
+  m_Name: House2x2
+  m_EditorClassIdentifier: 
+  Specification:
+    Id: 7
+    Title: "2\u04452"
+    Category: "\u0414\u0435\u043A\u043E\u0440\u0430\u0442\u0438\u0432\u043D\u043E\u0435"
+    Priority: 6
+    Limit: 2
+    DialogId: 
+    Size: {x: 2, y: 2}
+    Prefab: {fileID: 3663947345823063895, guid: c98423813d03a7740b3978d988ed51f6,
+      type: 3}
+    PreviewImage: {fileID: 0}

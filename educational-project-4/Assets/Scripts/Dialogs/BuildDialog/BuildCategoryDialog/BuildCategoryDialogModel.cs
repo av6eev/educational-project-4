@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using Descriptions.Builds.BuildsCategory;
 using Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog;
+using Specifications.Builds.BuildsCategory;
 
 namespace Dialogs.BuildDialog.BuildCategoryDialog
 {
@@ -9,15 +9,14 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog
     {
         public event Action OnDataClear;
 
-        public readonly BuildsCategoryDescription Description;
-        
-        public readonly List<BuildCardDialogModel> CardsModels = new();
+        public BuildsCategorySpecification Specification { get; private set; }
+        public List<BuildCardDialogModel> CardsModels { get; private set; } = new();
 
-        public bool IsActive;
+        public bool IsActive { get; set; }
 
-        public BuildCategoryDialogModel(BuildsCategoryDescription description)
+        public BuildCategoryDialogModel(BuildsCategorySpecification specification)
         {
-            Description = description;
+            Specification = specification;
         }
 
         public void ClearData()

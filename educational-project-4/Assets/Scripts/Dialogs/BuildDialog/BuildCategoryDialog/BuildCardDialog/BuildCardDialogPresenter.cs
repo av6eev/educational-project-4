@@ -45,10 +45,10 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
             switch (sceneIndex)
             { 
                 case (int) SceneNames.CosmicScene:
-                    _manager.ShipModel.SelectBuilding(_model.Description);
+                    _manager.ShipModel.SelectBuilding(_model.Specification);
                     break;
                 case (int) SceneNames.EarthScene:
-                    _manager.EarthGridModel.SelectBuilding(_model.Description);
+                    _manager.EarthGridModel.SelectBuilding(_model.Specification);
                     break;
             }
         }

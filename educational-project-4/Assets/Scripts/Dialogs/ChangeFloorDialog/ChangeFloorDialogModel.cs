@@ -1,17 +1,17 @@
 ﻿using System;
-using Descriptions.Base;
 using Dialogs.Base;
+using Specifications.Base;
 
 namespace Dialogs.ChangeFloorDialog
 {
     public class ChangeFloorDialogModel : IDialogModel
     {
         public event Action OnShow, OnHide;
-        public IDescription Description { get; }
+        public ISpecification Specification { get; }
 
-        public ChangeFloorDialogModel(IDescription description)
+        public ChangeFloorDialogModel(ISpecification specification)
         {
-            Description = description;
+            Specification = specification;
         }
         
         public void Show()

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Building;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 using UnityEngine;
 
 namespace Earth.Grid
@@ -15,7 +15,7 @@ namespace Earth.Grid
         public Vector3Int LastDetectedPosition = Vector3Int.zero;
 
         public readonly Dictionary<Vector3Int, BuildingModel> RegisteredBuildings = new();
-        public BuildingDescription LastSelectedBuilding;
+        public BuildingSpecification LastSelectedBuilding;
         
         public void ChangePlacementMode(bool state)
         {
@@ -27,9 +27,9 @@ namespace Earth.Grid
             OnBuildingPlaced?.Invoke();
         }
 
-        public void SelectBuilding(BuildingDescription description)
+        public void SelectBuilding(BuildingSpecification specification)
         {
-            LastSelectedBuilding = description;
+            LastSelectedBuilding = specification;
             OnBuildingSelected?.Invoke();
         }
         

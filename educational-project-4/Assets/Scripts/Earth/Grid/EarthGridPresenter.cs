@@ -1,6 +1,6 @@
 ﻿using System;
 using Building;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 using UnityEngine;
 using Utilities;
 
@@ -67,7 +67,7 @@ namespace Earth.Grid
 
             if (_manager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0)
             {
-                _manager.StatisticModel.UpdateLimit(_model.LastSelectedBuilding.Id);
+                // _manager.StatisticModel.UpdateLimit(_model.LastSelectedBuilding.Id);
                 StopShowPreview();
                 return;
             }
@@ -80,23 +80,23 @@ namespace Earth.Grid
             ChangePlacementMode(false);
         }
         
-        private void AddNewBuilding(Vector3Int gridPosition, BuildingDescription description)
+        private void AddNewBuilding(Vector3Int gridPosition, BuildingSpecification specification)
         {
-            // var takenPosition = _model.CalculatePosition(gridPosition, description.Size);
-            // var model = new BuildingModel(description.Id, description, takenPosition);
-            // var instantiateResult = _view.CreateBuilding(description.Prefab, gridPosition);
+            // var takenPosition = _model.CalculatePosition(gridPosition, specification.Size);
+            // var model = new BuildingModel(specification.Id, specification, takenPosition);
+            // var instantiateResult = _view.CreateBuilding(specification.Prefab, gridPosition);
             // new BuildingPresenter(_manager, model, instantiateResult.Item2).Activate();
             //
             // _manager.StatisticModel.Buildings.Add(model);
             //
             // foreach (var position in takenPosition)
             // {
-            //     if (_model.RegisteredBuildings.ContainsKey(position))
-            //     {
+            //    if (_model.RegisteredBuildings.ContainsKey(position))
+            //    {
             //         throw new Exception($"Cell {position} already contains in dictionary");
-            //     }
+            //    }
             //
-            //     _model.RegisteredBuildings[position] = model;
+            //    _model.RegisteredBuildings[position] = model;
             // }
             //
             // _manager.StatisticModel.UpdateLimit(model.Id);

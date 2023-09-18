@@ -1,5 +1,5 @@
 ﻿using System;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 
 namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
 {
@@ -7,11 +7,11 @@ namespace Dialogs.BuildDialog.BuildCategoryDialog.BuildCardDialog
     {
         public event Action<string> OnLimitUpdated; 
 
-        public readonly BuildingDescription Description;
+        public BuildingSpecification Specification { get; private set; }
         
-        public BuildCardDialogModel(BuildingDescription description)
+        public BuildCardDialogModel(BuildingSpecification specification)
         {
-            Description = description;
+            Specification = specification;
         }
 
         public void RedrawLimitText(int currentLimit)

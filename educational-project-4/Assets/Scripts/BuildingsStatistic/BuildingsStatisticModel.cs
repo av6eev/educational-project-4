@@ -2,29 +2,35 @@
 using System.Collections.Generic;
 using System.Linq;
 using Building;
-using Descriptions.Builds.BuildsCategory;
+using Specifications.Builds.BuildsCategory;
 
 namespace BuildingsStatistic
 {
     public class BuildingsStatisticModel
     {
-        public event Action<string> OnLimitUpdated; 
-        
-        public readonly List<BuildingModel> Buildings = new();
-        public readonly Dictionary<string, int> BuildingLimits = new();
+        // public event Action<string> OnLimitUpdated; 
+        public event Action<string> OnBuildingRegistered;
+        public List<BuildingModel> Buildings { get; } = new();
+        public Dictionary<string, int> BuildingLimits { get; } = new();
 
-        public BuildingsStatisticModel(List<BuildsCategoryDescription> buildsCategory)
+        public BuildingsStatisticModel(List<BuildsCategorySpecification> buildsCategory)
         {
             foreach (var building in buildsCategory.SelectMany(category => category.Buildings))
             {
-                BuildingLimits.Add(building.Description.Id, building.Description.Limit);
+                BuildingLimits.Add(building.Specification.Id, building.Specification.Limit);
             }
         }
 
         public void UpdateLimit(string buildingId)
         {
             BuildingLimits[buildingId] -= BuildingLimits[buildingId] == 0 ? 0 : 1;
-            OnLimitUpdated?.Invoke(buildingId);
+            // OnLimitUpdated?.Invoke(buildingId);
+        }
+
+        public void RegisterBuilding(BuildingModel model)
+        {
+            Buildings.Add(model);
+            OnBuildingRegistered?.Invoke(model.Id);
         }
     }
 }

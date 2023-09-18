@@ -10,10 +10,10 @@ namespace Dialogs.Base
     {
         private readonly List<IDialogModel> _dialogs = new();
 
-        public DialogsModel(GameDescriptions descriptions)
+        public DialogsModel(GameSpecifications specifications)
         {
-            Add(new BuildDialogModel(descriptions.Builds));
-            Add(new ChangeFloorDialogModel(descriptions.Builds));
+            Add(new BuildDialogModel(specifications.Builds));
+            Add(new ChangeFloorDialogModel(specifications.Floors));
         }
 
         private void Add(IDialogModel dialog)

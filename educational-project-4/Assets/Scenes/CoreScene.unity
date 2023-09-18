@@ -1067,7 +1067,7 @@ MonoBehaviour:
   <MainCamera>k__BackingField: {fileID: 525212207}
   <MainUIRoot>k__BackingField: {fileID: 933219575}
   <DialogsView>k__BackingField: {fileID: 1984791112}
-  <DescriptionsCollection>k__BackingField: {fileID: 11400000, guid: 86143d46bfed3644aaef5309b7e3f18a,
+  <SpecificationsCollection>k__BackingField: {fileID: 11400000, guid: 86143d46bfed3644aaef5309b7e3f18a,
     type: 2}
 --- !u!1 &782147144
 GameObject:

@@ -9,7 +9,7 @@ namespace Cosmic
         
         public CosmicSceneView CosmicSceneView;
         
-        public CosmicLocationManager(GameManager manager) : base(manager.CoreStartView, manager.Descriptions, manager.SceneLoader, manager.SystemEngine, manager.DialogsModel, manager.StatisticModel)
+        public CosmicLocationManager(GameManager manager) : base(manager.CoreStartView, manager.Specifications, manager.SceneLoader, manager.SystemEngine, manager.DialogsModel, manager.StatisticModel, manager.SaveModel)
         {
             GameManager = manager;
         }

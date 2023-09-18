@@ -1,21 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using Descriptions.Base;
 using Dialogs.Base;
 using Dialogs.BuildDialog.BuildCategoryDialog;
+using Specifications.Base;
 
 namespace Dialogs.BuildDialog
 {
     public class BuildDialogModel : IDialogModel
     {
         public event Action OnShow, OnHide;
-        public IDescription Description { get; }
+        public ISpecification Specification { get; }
 
-        public readonly List<BuildCategoryDialogModel> CategoriesModels = new();
+        public List<BuildCategoryDialogModel> CategoriesModels { get; private set; } = new();
         
-        public BuildDialogModel(IDescription description)
+        public BuildDialogModel(ISpecification specification)
         {
-            Description = description;
+            Specification = specification;
         }
         
         public void Show()

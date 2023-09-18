@@ -1,5 +1,5 @@
 ﻿using System;
-using Building.Dialog;
+using Dialogs.BuildingDialog;
 using UnityEngine;
 
 namespace Building

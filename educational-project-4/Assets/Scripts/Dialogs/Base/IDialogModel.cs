@@ -1,12 +1,12 @@
 ﻿using System;
-using Descriptions.Base;
+using Specifications.Base;
 
 namespace Dialogs.Base
 {
     public interface IDialogModel
     {
         event Action OnShow, OnHide;
-        IDescription Description { get; }
+        ISpecification Specification { get; }
         void Show();
         void Hide();
     }

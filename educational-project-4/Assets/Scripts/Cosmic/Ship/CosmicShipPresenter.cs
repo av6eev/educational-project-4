@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Building;
 using Cosmic.Ship.Floor;
-using Descriptions.Builds.BuildsCategory.Buildings;
+using Specifications.Builds.Buildings;
 using UnityEngine;
 using Utilities;
 using Utilities.Helpers;
@@ -50,7 +50,7 @@ namespace Cosmic.Ship
         {
             if (_gameManager.StatisticModel.BuildingLimits[_model.LastSelectedBuilding.Id] == 0)
             {
-                _gameManager.StatisticModel.UpdateLimit(_model.LastSelectedBuilding.Id);
+                // _gameManager.StatisticModel.UpdateLimit(_model.LastSelectedBuilding.Id);
                 StopShowPreview();
                 return;
             }
@@ -63,19 +63,19 @@ namespace Cosmic.Ship
             ChangePlacementMode(false);
         }
         
-        private void CreateNewBuilding(Vector3 gridPosition, BuildingDescription description)
+        private void CreateNewBuilding(Vector3 gridPosition, BuildingSpecification specification)
         {
             var takenPosition = new List<Vector3>();
             
-            for (var x = 0; x < description.Size.x; x++)
+            for (var x = 0; x < specification.Size.x; x++)
             {
-                for (var z = 0; z < description.Size.y; z++)
+                for (var z = 0; z < specification.Size.y; z++)
                 {
                     takenPosition.Add(gridPosition + new Vector3(x, gridPosition.y, z));
                 }
             }
             
-            var model = new BuildingModel(description.Id, description, takenPosition);
+            var model = new BuildingModel(specification.Id, specification, takenPosition);
             var activeFloor = _model.Floors.Find(floor => floor.IsActive);
             
             foreach (var position in takenPosition)
@@ -88,11 +88,10 @@ namespace Cosmic.Ship
                 activeFloor.RegisteredBuildings[position] = model;
             }
             
-            var buildingView = _view.InstantiateBuilding(description.Prefab, gridPosition, activeFloor.Index);
+            var buildingView = _view.InstantiateBuilding(specification.Prefab, gridPosition, activeFloor.Index);
             new BuildingPresenter(_gameManager, model, buildingView).Activate();
             
-            _gameManager.StatisticModel.Buildings.Add(model);
-            _gameManager.StatisticModel.UpdateLimit(model.Id);
+            _gameManager.StatisticModel.RegisterBuilding(model);
         }
 
         private void BuildingSelected()
@@ -145,7 +144,8 @@ namespace Cosmic.Ship
         {
             foreach (var level in _manager.CosmicSceneView.CosmicView.LevelsPositions)
             {
-                var model = new CosmicShipFloorModel(level.Key);
+                var floorSpecification = _gameManager.Specifications.FloorsData.Find(item => item.Index == level.Key);
+                var model = new CosmicShipFloorModel(level.Key, floorSpecification?.AccessLevel ?? -1);
                 
                 if (level.Key == 0)
                 {

@@ -45,10 +45,10 @@ namespace Dialogs.BuildDialog
                 case true:
                     _manager.DialogsModel.GetByType<ChangeFloorDialogModel>().Hide();
                     
-                    foreach (var description in _manager.Descriptions.BuildsCategory)
+                    foreach (var specification in _manager.Specifications.BuildsCategory)
                     {
-                        var model = new BuildCategoryDialogModel(description);
-                        var presenter = new BuildCategoryDialogPresenter(_manager, model, _view.InstantiateCategoryView(model.Description.Category));
+                        var model = new BuildCategoryDialogModel(specification);
+                        var presenter = new BuildCategoryDialogPresenter(_manager, model, _view.InstantiateCategoryView(model.Specification.Category));
                     
                         _model.CategoriesModels.Add(model);
                         _presenters.Add(presenter);
